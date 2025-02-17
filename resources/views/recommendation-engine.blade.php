@@ -37,12 +37,12 @@
         background-color: #034ea1;
         color: white;
         width: 250px;
-        height: 180px;
+        height: 200px;
         border-radius: 10px;
         padding: 20px;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: center; /* Memastikan gambar di tengah horizontal */
         text-align: center;
         box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease-in-out;
@@ -54,7 +54,11 @@
     }
 
     .card p {
-        font-size: 15px;
+        flex-grow: 1; /* Memungkinkan teks memenuhi ruang yang tersedia */
+        display: flex;
+        align-items: center; /* Memusatkan teks secara vertikal */
+        justify-content: center; /* Memusatkan teks secara horizontal */
+        font-size: 14px;
         color: whitesmoke;
     }
 
@@ -333,7 +337,7 @@
     .code-line {
         margin: 0; /* Remove extra margins from the <p> tags */
         white-space: pre; /* Ensure spaces and tabs are respected */
-        padding-left: 20px; /* Add indentation if needed */
+        padding-left: 10px; /* Add indentation if needed */
         font-size: 15px;
     }
 
@@ -396,7 +400,7 @@
                                     </div> --}}
                                     <div class="image-section">
                                         <!-- Ganti dengan gambar Anda -->
-                                        <img src="{{ asset('images/image1.png')}}" class="image">
+                                        <img src="{{ asset('images/image8.png')}}" class="image">
                                     </div>
                                 </div>
                             </section>
@@ -1026,7 +1030,126 @@
                             <hr>
                             <h2>Collaborative Filtering Recommendation - By Product Purchase</h2>
                             <p>Collaborative filtering is a technique in recommender systems where recommendations are provided based on behavioral patterns and preferences of users similar to the target user. The principle is that recommending products based on similarities in purchases by other customers, without a specific focus on a particular category. Below is an example of applying collaborative filtering recommendations using the Northwind dataset.</p>
-                        
+                            <h2 style="color:#034ea1; font-size:20px;" >Find Behavioral Patterns</h2>
+                            <div class="code-box">
+                                <div class="code-header">
+                                    <span>Cypher</span>
+                                    <button class="copy-button" data-target="cypher-code18">
+                                        <i class="fa-regular fa-copy" id="copy-icon18"></i>
+                                        <span id="copy-text18" class="copy-text"></span>
+                                    </button>
+                                </div>
+                                <div class="code-content" id="cypher-code18">
+                                    <p class="code-line">MATCH (targetCustomer:Customer {customerID: 'CONSH'})-[:PURCHASED]->(:Order)-[:ORDERS]->(p1:Product) WITH targetCustomer, p1</p>
+                                    <p class="code-line">MATCH (otherCustomer:Customer)-[:PURCHASED]->(order:Order)-[:ORDERS]-(p2:Product)</p>
+                                    <p class="code-line">WHERE otherCustomer <> targetCustomer AND NOT (targetCustomer)-[:PURCHASED]->(p2)</p>
+                                    <p class="code-line">WITH targetCustomer, p2, COUNT(order) AS purchaseFrequency</p>
+                                    <p class="code-line">RETURN p2.productName AS RecommendedProduct, purchaseFrequency AS PurchaseFrequency</p>
+                                    <p class="code-line">ORDER BY purchaseFrequency DESC LIMIT 6;</p>
+                                </div>
+                            </div>
+                            <p>The purpose of this query is to provide product recommendations to customers with ID 'CONSH' based on product purchasing patterns by other customers who have similar purchasing preferences.</p>
+                            <ul class="property-list">
+                                <li style="font-size: 18px; color:#034ea1;"><span>1. Search for Target Customer Purchases</span></li>
+                                <div class="code-box">
+                                    <div class="code-header">
+                                        <span>Cypher</span>
+                                        <button class="copy-button" data-target="cypher-code19">
+                                            <i class="fa-regular fa-copy" id="copy-icon19"></i>
+                                            <span id="copy-text19" class="copy-text"></span>
+                                        </button>
+                                    </div>
+                                    <pre class="code-content" id="cypher-code19">MATCH (targetCustomer:Customer {customerID: 'CONSH'})-[:PURCHASED]->(:Order)-[:ORDERS]->(p1:Product) WITH targetCustomer, p1</pre>
+                                </div>
+                            </ul>
+                            <p>Retrieves the products that have been purchased by the target customer ('CONSH').</p>
+                            <p>Using <span>MATCH</span> to match the graph pattern. Here:</p>
+                            <ul class="nested-list">
+                                <li style="font-size: 15px;"><span class="property-name">targetCustomer :</span> The target customer node with customerID 'CONSH'.</li>
+                                <li style="font-size: 15px;"><span class="property-name">p1 :</span> The product node purchased by the target customer.</li>
+                            </ul>
+                            <ul class="property-list">
+                                <li style="font-size: 18px; color:#034ea1;"><span>2. Calculating the Frequency of Purchases by Other Customers</span></li>
+                            </ul>
+                            <div class="code-box">
+                                <div class="code-header">
+                                    <span>Cypher</span>
+                                    <button class="copy-button" data-target="cypher-code20">
+                                        <i class="fa-regular fa-copy" id="copy-icon20"></i>
+                                        <span id="copy-text20" class="copy-text"></span>
+                                    </button>
+                                </div>
+                                <div class="code-content" id="cypher-code20">
+                                    <p class="code-line">MATCH (otherCustomer:Customer)-[:PURCHASED]->(order:Order)-[:ORDERS]-(p2:Product)</p>
+                                    <p class="code-line">WHERE otherCustomer <> targetCustomer AND NOT (targetCustomer)-[:PURCHASED]->(p2)</p>
+                                    <p class="code-line">WITH targetCustomer, p2, COUNT(order) AS purchaseFrequency</p>
+                                </div>
+                            </div>
+                            <p>Search for products purchased by other customers and ensure that we only consider customers who are different 
+                                from the target customer and products that have never been purchased by the target customer. 
+                                Then calculate the frequency of purchase of each product by other customers.
+                            </p>
+                            <p>Uses <span>MATCH</span> to match graph patterns.</p>
+                            <ul class="nested-list">
+                                <li style="font-size: 15px;"><span>otherCustomer :</span> Another customer node that is not the same as the target customer.</li>
+                                <li style="font-size: 15px;"><span>p2 :</span> A product node that is different from the product purchased by the target customer.</li>
+                                <li style="font-size: 15px;">Using <span>WHERE</span> to filter <span>otherCustomer</span> instead of <span>targetCustomer</span>. Also ensures that <span>targetCustomer</span> has not purchased product <span>p2</span>.</li>
+                                <li style="font-size: 15px;">Uses <span>WITH</span> to store the previous matching result and count the number of orders placed by <span>otherCustomer</span>.</li>
+                            </ul>
+                            <ul class="property-list">
+                                <li style="font-size: 18px; color:#034ea1;"><span>3. Return Product Recommendations</span></li>
+                            </ul>
+                            <div class="code-box">
+                                <div class="code-header">
+                                    <span>Cypher</span>
+                                    <button class="copy-button" data-target="cypher-code21">
+                                        <i class="fa-regular fa-copy" id="copy-icon21"></i>
+                                        <span id="copy-text21" class="copy-text"></span>
+                                    </button>
+                                </div>
+                                <div class="code-content" id="cypher-code21">
+                                    <p class="code-line">RETURN p2.productName AS RecommendedProduct, purchaseFrequency AS PurchaseFrequency</p>
+                                    <p class="code-line">ORDER BY purchaseFrequency DESC</p>
+                                    <p class="code-line">LIMIT 6;</p>
+                                </div>
+                            </div>
+                            <p>Use <span>RETURN</span> to return a product name (RecommendedProduct) containing 
+                                product recommendations and their purchase frequency (PurchaseFrequency) 
+                                for product p2, sorted in descending order based on the product's purchase 
+                                frequency and limit the number of recommendations displayed.
+                            </p>
+                            <hr>
+                            <h2>Result</h2>
+                            <center><img src="{{ asset('images/image16.png')}}" class="content-image"></center>
+                            <center><img src="{{ asset('images/image17.png')}}" class="content-image"></center>
+                            <p>From the query results, we can infer some insights related to product recommendations to 'CONSH' customers based on other customers' purchasing patterns:</p>
+                            <ul class="property-list">
+                                <li style="font-size: 18px; color:#034ea1;"><span>• Most Recommended Product</span></li>
+                                <p>"Raclette Courdavault" is the most recommended product with a purchase frequency of 378. This shows that this product is highly demanded by other customers who share similar preferences with 'CONSH' customers.</p>
+                            </ul>
+                            <ul class="property-list">
+                                <li style="font-size: 18px; color:#034ea1;"><span>• Most Recommended Product</span></li>
+                                <p>"Guaraná Fantástica", "Camembert Pierrot", and "Gorgonzola Telino" have a high frequency of purchase with a score of 357 each. These products are also top recommendations with high popularity.</p>
+                            </ul>
+                            <ul class="property-list">
+                                <li style="font-size: 18px; color:#034ea1;"><span>• Diversification of Recommended Products</span></li>
+                                <p>Product recommendations include various types, such as beverages ("Guaraná Fantástica"), cheeses ("Raclette Courdavault", "Camembert Pierrot", "Gorgonzola Telino"), pasta ("Gnocchi di nonna Alice"), and cakes ("Tarte au sucre"). This shows the variety of products recommended to 'CONSH' customers.</p>
+                            </ul>
+                            <ul class="property-list">
+                                <li style="font-size: 18px; color:#034ea1;"><span>• Potential 'CONSH' Customer Favorites</span></li>
+                                <p>Based on the recommendations, we can assume that customer 'CONSH' is likely to have a preference for food products such as cheese, drinks, pasta, and cake based on the purchasing patterns of other customers.</p>
+                            </ul>
+                            <ul class="property-list">
+                                <li style="font-size: 18px; color:#034ea1;"><span>• Potential Marketing Strategy</span></li>
+                                <p>This information can be used to develop more targeted marketing strategies, such as special promotions, bundle packages, or discount campaigns for the most recommended products.</p>
+                            </ul>
+                            <p>By understanding the results of this query, companies can improve the shopping experience of 'CONSH' customers by providing product recommendations that are more in line with their preferences.</p>
+                            <center>
+                                <video class="content-video" controls>
+                                    <source src="{{ asset('videos/result_collaborative_filtering.mp4') }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </center>   
                         </div>
                     </div>
                 </div>
