@@ -226,59 +226,71 @@
     /*------------------------------------------
         = CONTACT FORM SUBMISSION
     -------------------------------------------*/
-    if ($("#contact-form-mejor").length) {
+    $(document).ready(function () {
         $("#contact-form-mejor").validate({
             rules: {
-                name: {
-                    required: true,
-                    minlength: 2
-                },
-
-                email: "required",
-
-                phone: "required",
-
-                subject: {
-                    required: true
-                }
-
-
+                first: { required: true },
+                last: { required: true },
+                email: { required: true, email: true },
+                company: { required: true },
+                "job-title": { required: true },
+                "job-function": { required: true },
+                phone: { required: true },
+                country: { required: true },
             },
-
             messages: {
-                name: "Please enter your name",
-                email: "Please enter your email address",
-                phone: "Please enter your phone number",
-                subject: "Please select your contact subject"
+                first: "First name is required",
+                last: "Last name is required",
+                email: "Enter a valid email",
+                company: "Company name is required",
+                "job-title": "Job title is required",
+                "job-function": "Job function is required",
+                phone: "Phone number is required",
+                country: "Country is required",
             },
-
+            errorPlacement: function (error, element) {
+                error.addClass("text-danger"); // Warna merah untuk pesan error
+                error.insertAfter(element); // Menampilkan error setelah input
+            },
             submitHandler: function (form) {
+                event.preventDefault(); // Mencegah submit form berulang kali
+    
+                $("#submit-btn").prop("disabled", true).text("Mengirim...");
+                var formData = $(form).serialize();
+    
                 $.ajax({
                     type: "POST",
-                    url: "mail-contact.php",
-                    data: $(form).serialize(),
-                    success: function () {
+                    url: "/personal-data",
+                    data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    beforeSend: function () {
+                        $("#loader").show();  // Menampilkan loader
+                    },
+                    success: function (response) {
                         $("#loader").hide();
-                        $("#success").slideDown("slow");
+                        $("#success").slideDown("slow").html("Data berhasil dikirim!");
                         setTimeout(function () {
                             $("#success").slideUp("slow");
-                        }, 3000);
-                        form.reset();
+                        }, 1000);
+                        form.reset(); // Reset form setelah submit sukses
+                        $("#submit-btn").prop("disabled", false).text("Submit");
                     },
-                    error: function () {
+                    error: function (xhr) {
                         $("#loader").hide();
-                        $("#error").slideDown("slow");
+                        $("#error").slideDown("slow").html("Terjadi kesalahan, silakan coba lagi.");
                         setTimeout(function () {
                             $("#error").slideUp("slow");
-                        }, 3000);
+                        }, 1000);
+                        $("#submit-btn").prop("disabled", false).text("Submit");
                     }
                 });
-                return false; // required to block normal submit since you used ajax
+    
+                return false; // Menghentikan form agar tidak dikirim berkali-kali
             }
-
         });
-    }
-
+    });
 
     $(document).ready(function () {
         $('.recent-work-popup').magnificPopup({
