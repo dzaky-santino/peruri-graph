@@ -199,7 +199,7 @@
                 <div class="col-xl-6 col-lg-6 col-12">
                     <div class="ch-top-title-s2">
                         <h2 class="site-split-text ch-split-in-up">Our Use Case</h2>
-                        <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit doloribus ea ipsum nostrum, earum architecto, fuga libero vitae illum iure magni aut debitis asperiores assumenda obcaecati officia aliquid. Modi, iure?</P>
+                        <P class="blog-item wow fadeInUp">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit doloribus ea ipsum nostrum, earum architecto, fuga libero vitae illum iure magni aut debitis asperiores assumenda obcaecati officia aliquid. Modi, iure?</P>
                     </div>
                 </div>
             </div>
@@ -213,14 +213,14 @@
                                 </div>
                             </div>
                             <div class="blog-content">
-                                <h2><a href="blog-single.html">Fraud Detection</a>
+                                <h2><a href="{{ route('fraud')}}">Fraud Detection</a>
                                 </h2>
                                 <p style="text-align: justify;">Fraud is a financial drain, a risk for businesses and consumers alike. 
                                     With fraud attempts skyrocketing, how can you identify fraud in time to stop it? 
                                     Graph-based approaches to detecting fraud analyze complex linkages between people, 
                                     transactions, and institutions.
                                 </p>
-                                <a href="blog-single.html" class="ch-btn-style-3 ch-btn-animated">Learn More</a>                           </div>
+                                <a href="{{ route('fraud')}}" class="ch-btn-style-3 ch-btn-animated">Learn More</a>                           </div>
                         </div>
                     </div>
                     <div class="col col-xl-6 col-lg-12 col-md-12 col-12">
@@ -231,7 +231,7 @@
                                 </div>
                             </div>
                             <div class="blog-content">
-                                <h2><a href="blog-single.html">Recommendation Engine</a>
+                                <h2><a href="{{ route('recommendation')}}">Recommendation Engine</a>
                                 </h2>
                                 <p style="text-align: justify;">Today’s retailers face a number of complex and emerging challenges. 
                                     To remain viable, they must be nimble enough to face their colossal 
