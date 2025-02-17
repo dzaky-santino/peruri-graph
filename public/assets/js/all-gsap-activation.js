@@ -29,15 +29,15 @@ menuItems.forEach(item => {
 var screen_width = window.screen.width;
 
 // Active GSAP
-if (document.querySelector("#smooth-animate").classList.contains("smooth-scrool-animate")) {
-    const smoother = ScrollSmoother.create({
-        effects: screen_width < 1025 ? false : true,
-        smooth: 1.35,
-        ignoreMobileResize: true,
-        normalizeScroll: false,
-        smoothTouch: 0.1,
-    });
-}
+// if (document.querySelector("#smooth-animate").classList.contains("smooth-scrool-animate")) {
+//     const smoother = ScrollSmoother.create({
+//         effects: screen_width < 1025 ? false : true,
+//         smooth: 1.35,
+//         ignoreMobileResize: true,
+//         normalizeScroll: false,
+//         smoothTouch: 0.1,
+//     });
+// }
 
 
 // mousemove animation
