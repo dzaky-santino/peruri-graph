@@ -18,7 +18,7 @@
                                         <a href="#">Use Case</a>
                                         <ul class="sub-menu">
                                             <li><a href="{{ route('recommendation')}}">Recommendation Engine</a></li>
-                                            <li><a href="#">Fraud Detection</a></li>
+                                            <li><a href="{{ route('fraud')}}">Fraud Detection</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">Contact</a></li>
@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-4 col-4 text-left">
                         <div class="cp-header-area-right">
-                            <a href="#" class="call-btn"><i class="icon-arrow"></i><span>Try it Now!</span></a>
+                            <a href="{{ route('form')}}" class="call-btn"><i class="icon-arrow"></i><span>Try it Now!</span></a>
                         </div>
                     </div>
                     <div class="col-12">
