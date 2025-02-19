@@ -1,3 +1,8 @@
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
 <header class="cp-header-area cp-header-style-1">
     <div id="cp-header-sticky" class="menu-area">
         <div class="container">
@@ -13,15 +18,9 @@
                             <nav id="mobile-menu">
                                 <ul class="nav">
                                     <li><a href="{{ url('/')}}">Home</a></li>
-                                    <li><a href="#">Feature</a></li>
-                                    <li class="has-submenu">
-                                        <a href="#">Use Case</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="{{ route('recommendation')}}">Recommendation Engine</a></li>
-                                            <li><a href="{{ route('fraud')}}">Fraud Detection</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="{{ url('/')}}#features">Feature</a></li>
+                                    <li><a href="{{ url('/')}}#use-case">Use Case</a></li>
+                                    <li><a href="{{ url('/')}}#contact">Contact</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -40,3 +39,43 @@
     </div>
 </header>
 <!-- end of header -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+        // Fungsi untuk mengecek apakah sedang di homepage
+        function isHomePage() {
+            return window.location.pathname === '/' || 
+                window.location.pathname === '/index.php' || 
+                window.location.pathname === '/index.html';
+        }
+
+        // Handler untuk link navbar
+        $("a[href*='#']").on('click', function(e) {
+            var href = $(this).attr('href');
+            var hashPart = href.split('#')[1]; // Mengambil bagian hash saja
+
+            // Jika di homepage
+            if (isHomePage()) {
+                e.preventDefault();
+                var targetElement = $('#' + hashPart);
+                
+                if (targetElement.length) {
+                    $('html, body').animate({
+                        scrollTop: targetElement.offset().top
+                    }, 1000);
+                }
+            }
+            // Jika di halaman lain, biarkan default behavior browser
+            // yang akan redirect ke home dan langsung ke section yang dituju
+        });
+
+        // Jika ada hash di URL saat halaman load dan bukan di homepage
+        if (window.location.hash && !isHomePage()) {
+            var element = $(window.location.hash);
+            if (element.length) {
+                $(window).scrollTop(element.offset().top);
+            }
+        }
+    });
+</script>
