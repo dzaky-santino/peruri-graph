@@ -1675,9 +1675,9 @@ body.dark-page .mouse-circle-mover-follow {
 .ch-main-hero .poligon-wrap,
 .ch-main-hero-s2 .poligon-wrap {
   position: absolute;
-  max-width: 200px;
+  max-width: 400px;
   right: 0;
-  bottom: 150px;
+  bottom: 30px;
 }
 @media (max-width: 575px) {
   .ch-main-hero .poligon-wrap,
@@ -2875,7 +2875,7 @@ body.dark-page .mouse-circle-mover-follow {
 .text-moving-sec {
   position: relative;
   z-index: 11;
-  margin-top: -100px;
+  margin-top: -50px;
 }
 .text-moving-sec .text-moving {
   position: relative;
@@ -2884,7 +2884,7 @@ body.dark-page .mouse-circle-mover-follow {
   z-index: -1;
   padding: 15px 0 15px;
   background: #3a96ff;
-  transform: rotate(-1deg);
+  /* transform: rotate(-1deg); */
 }
 .text-moving-sec .text-moving .track {
   animation: marquee 200s linear infinite;
@@ -3850,7 +3850,6 @@ body.dark-page .mouse-circle-mover-follow {
   background: #034ea1;
   text-align: center;
   border-radius: 50%;
-  margin-bottom: 0px;
   position: absolute;
   top: -40px;
 }
