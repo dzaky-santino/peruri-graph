@@ -69,11 +69,23 @@
 
     /* Container utama */
     .use-case-container {
-        padding: 0 0 0 20px;
+        padding: 0 0px 0 20px;
         max-width: 1200px;
         margin: 0 auto;
         background-color: #034ea1;
         border-radius: 20px;
+    }
+
+    .use-case-container .description  {
+        font-size: 16px;
+        word-spacing: 5px;
+        line-height: 33px;
+    }
+
+    .use-case-container .content-wrapper .fraud-title {
+        font-size: 40px;
+        font-weight: 900;
+        color: white;
     }
 
     /* Wrapper untuk konten */
@@ -90,14 +102,6 @@
         max-width: 50%;
     }
 
-    /* Judul */
-    .title {
-        font-size: 32px;
-        font-weight: bold;
-        margin-bottom: 15px;
-        color: white;
-    }
-
     /* Deskripsi */
     .description {
         font-size: 15px;
@@ -108,7 +112,7 @@
 
     /* Bagian gambar */
     .image-section {
-        max-width: 45%;
+        max-width: 400px;
         display: flex;
         justify-content: center;
     }
@@ -135,26 +139,26 @@
     /* Teks dalam Card */
     .fraud-text {
         width: 50%;
-        text-align: left;
+        text-align: justify;
         padding: 20px;
     }
 
     .fraud-text h3 {
-        font-size: 20px;
-        font-weight: bold;
-        color: #222;
+        font-size: 30px;
+        font-weight: 900;
+        color: #373738;
         margin-bottom: 10px;
     }
 
     .fraud-text p {
-        font-size: 14px;
+        font-size: 15px;
         color: #666;
-        line-height: 1.6;
+        line-height: 30px;
     }
 
     /* Gambar dalam Card */
     .fraud-image {
-        width: 40%;
+        width: 30%;
         display: flex;
         justify-content: center;
     }
@@ -340,7 +344,7 @@
                             <section class="use-case-container">
                                 <div class="content-wrapper">
                                     <div class="text-section">
-                                        <h2 class="title">Uses Cases: Fraud Detection</h2>
+                                        <h2 class="fraud-title">Uses Cases: Fraud Detection</h2>
                                         <p class="description">
                                             Fraud is a financial drain, a risk for businesses and consumers alike. With fraud attempts skyrocketing, how can you identify fraud in time to stop it? 
                                             Graph-based approaches to detecting fraud analyze complex linkages between people, transactions, and institutions. 
@@ -381,15 +385,16 @@
 
                     <!-- Use Case Cards Section -->
                     <div>
+                        <br>
                         <h2 class="section-title">Example of Use Case <br> "Bank Fraud Detection"</h2>
                         <!-- Card 1 -->
                         <div class="fraud-card">
                             <div class="fraud-text">
                                 <h3>Introduction to Problem</h3>
                                 <p>
-                                    Banks and insurance companies lose a lot of money to fraud every
-                                    year. Fraud is a big risk for their business. They work together
-                                    to use different ways to reduce fraud losses.
+                                    Banks and insurance companies lose a lot of money to fraud every year. 
+                                    Old ways of finding fraud are still important, but criminals are getting better at hiding their crimes. 
+                                    They work together and use different ways to make fake identities.
                                 </p>
                             </div>
                             <div class="fraud-image">
@@ -402,10 +407,9 @@
                             <div class="fraud-text">
                                 <h3>Explanation of Scenario</h3>
                                 <p>
-                                    A method of fraud prevention is predictive, but some frequent
-                                    samples in a transaction process are not analyzed and qualified. It
-                                    is risky to use historic transactions because they often have the
-                                    most important details.
+                                    No method of fraud prevention is perfect, but we can improve by looking at the relationships between data points 
+                                    instead of just the data points themselves. These connections often go unnoticed until it's too late, 
+                                    which is a shame because they often hold the most important clues.
                                 </p>
                             </div>
                             <div class="fraud-image">
@@ -418,14 +422,13 @@
                             <div class="fraud-text">
                                 <h3>Typical Scenario</h3>
                                 <p>
-                                    One method of fraud prevention is quick but not as effective in
-                                    tracking patterns. Traditional methods work but sometimes limit
-                                    accuracy. Graph-based detection methods allow real-time analysis
-                                    for better fraud detection.
+                                    No method of fraud prevention is perfect, but we can improve by looking at the relationships between data points 
+                                    instead of just the data points themselves. These connections often go unnoticed until it's too late, 
+                                    which is a shame because they often hold the most important clues.
                                 </p>
                             </div>
                             <div class="fraud-image">
-                                <img src="{{ asset('images/image20.png') }}" alt="Fraud Typical Scenario">
+                                <img src="{{ asset('images/image21.png') }}" alt="Fraud Typical Scenario">
                             </div>
                         </div>
                     </div>
