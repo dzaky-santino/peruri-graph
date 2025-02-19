@@ -38,7 +38,7 @@
         color: white;
         width: 250px;
         height: 200px;
-        border-radius: 10px;
+        border-radius: 20px;
         padding: 20px;
         display: flex;
         flex-direction: column;
@@ -67,21 +67,25 @@
         transform: translateY(-5px);
     }
 
-    /* Responsif */
-    @media (max-width: 768px) {
-        .card-container {
-            flex-direction: column;
-            align-items: center;
-        }
-    }
-
     /* Container utama */
     .use-case-container {
-        padding: 50px 20px;
+        padding: 0 0 0 20px;
         max-width: 1200px;
         margin: 0 auto;
         background-color: #034ea1;
         border-radius: 20px;
+    }
+
+    .use-case-container .description  {
+        font-size: 16px;
+        word-spacing: 5px;
+        line-height: 33px;
+    }
+
+    .use-case-container .content-wrapper .title {
+        font-size: 30px;
+        font-weight: 900;
+        color: white;
     }
 
     /* Wrapper untuk konten */
@@ -98,14 +102,6 @@
         max-width: 50%;
     }
 
-    /* Judul */
-    .title {
-        font-size: 32px;
-        font-weight: bold;
-        margin-bottom: 15px;
-        color: white;
-    }
-
     /* Deskripsi */
     .description {
         font-size: 15px;
@@ -114,16 +110,9 @@
         text-align: justify;
     }
 
-    /* Bagian video */
-    /* .video-section {
-        max-width: 45%;
-        display: flex;
-        justify-content: center;
-    } */
-
     /* Bagian gambar */
     .image-section {
-        max-width: 45%;
+        max-width: 400px;
         display: flex;
         justify-content: center;
     }
@@ -131,34 +120,8 @@
     .image {
         width: 100%;
         height: auto;
-        border-radius: 10px;
+        border-radius: 20px;
         box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
-    }
-
-    /* Responsif untuk tampilan lebih kecil */
-    @media (max-width: 768px) {
-        .content-wrapper {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .text-section, .video-section {
-            max-width: 100%;
-        }
-
-        .title {
-            font-size: 28px;
-            color: white;   
-        }
-
-        .description {
-            font-size: 15px;
-            color: white;
-        }
-
-        .image {
-            width: 80%;
-        }
     }
 
     /* Menu Navigasi */
