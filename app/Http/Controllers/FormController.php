@@ -26,7 +26,7 @@ class FormController extends Controller
             'country' => 'required|string|max:100',
         ]);
 
-        Mail::to('dzakysan2002@gmail.com')->send(new FormMail($validated));
+        Mail::to('dzakysan2002@gmail.com')->send(new FormMail($validated)); #digitalchannel@peruri.co.id
 
         return redirect()->back()->with('success', 'Data berhasil dikirim ke email!');
     }
