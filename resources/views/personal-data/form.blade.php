@@ -42,7 +42,7 @@
                 <div class="contact-title">
                     <div class="ch-top-title-s3">
                         <h2 class="site-split-text ch-split-in-right">Let’s Get You Set Up</h2>
-                        <p>You'll be able to try the product in just a few minutes</p>
+                        <p class="blog-item wow fadeInUp">You'll be able to try the product in just a few minutes</p>
                     </div>
                 </div>
             </div>
