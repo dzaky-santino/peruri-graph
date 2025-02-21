@@ -3853,9 +3853,9 @@ body.dark-page .mouse-circle-mover-follow {
   position: absolute;
   top: -40px;
 }
-.ch-skill-area .skill-card .skill-icon i {
-  font-size: 30px;
-  color: #034ea1;
+.ch-skill-area .skill-card .skill-icon img {
+  width: 50px; 
+  margin: 10px auto;
 }
 .ch-skill-area .skill-card .skill-text h3 {
   font-size: 24px;
