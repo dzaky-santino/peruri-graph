@@ -19,5 +19,9 @@ Route::get('form', function () {
     return view('personal-data.form');
 })->name('form');
 
+Route::get('experience', function () {
+    return view('experience');
+})->name('experience');
+
 Route::get('/personal-data', [FormController::class, 'index'])->name('personal-data.index');
 Route::post('/personal-data', [FormController::class, 'store'])->name('personal-data.store');
