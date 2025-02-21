@@ -63,6 +63,7 @@
     <script src="{{ asset('assets/js/jquery.meanmenu.min.js') }}"></script>
     <script src="{{ asset('assets/js/all-gsap-activation.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </body>
 
 </html>
