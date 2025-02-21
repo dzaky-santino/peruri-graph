@@ -89,10 +89,10 @@
                     <div class="col-md-6">
                         <div class="service-item wow fadeInUp" data-wow-duration="1000ms">
                             <div class="service-text">
-                                <h3><a href="#">Experience the difference with our exceptional product</a></h3>
+                                <h3>Experience the difference with our exceptional product</h3>
                                 <p style="color: white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                <a href="#" class="read-more">See Details</a>
+                                <a href="{{ route('experience')}}" class="read-more">See Details</a>
                             </div>
                         </div>
                     </div>
@@ -137,7 +137,7 @@
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="skill-card wow fadeInUp" data-wow-duration="1000ms">
                             <div class="skill-icon">
-                                <img src="{{ asset('images/image2.png')}}" style="width: 50px; margin-top: 10px;">
+                                <img src="{{ asset('images/image2.png')}}">
                             </div>
                             <div class="skill-text">
                                 <h3>Graph Data Science</h3>
@@ -148,7 +148,7 @@
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="skill-card wow fadeInUp" data-wow-duration="1200ms">
                             <div class="skill-icon">
-                                <img src="{{ asset('images/image3.png')}}" style="width: 50px;">
+                                <img src="{{ asset('images/image3.png')}}">
                             </div>
                             <div class="skill-text">
                                 <h3>Easy Integration</h3>
@@ -159,7 +159,7 @@
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="skill-card wow fadeInUp" data-wow-duration="1400ms">
                             <div class="skill-icon">
-                                <img src="{{ asset('images/image4.png')}}" style="width: 50px; margin-top: 10px;">
+                                <img src="{{ asset('images/image4.png')}}">
                             </div>
                             <div class="skill-text">
                                 <h3>Graph Database & Analytics</h3>
@@ -170,7 +170,7 @@
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="skill-card wow fadeInUp" data-wow-duration="1000ms">
                             <div class="skill-icon">
-                                <img src="{{ asset('images/image5.png')}}" style="width: 50px; margin-top: 10px;">
+                                <img src="{{ asset('images/image5.png')}}">
                             </div>
                             <div class="skill-text">
                                 <h3>Interactive Data Visualization</h3>
@@ -181,7 +181,7 @@
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="skill-card wow fadeInUp" data-wow-duration="1200ms">
                             <div class="skill-icon">
-                                <img src="{{ asset('images/image6.png')}}" style="width: 50px; margin-top: 10px;">
+                                <img src="{{ asset('images/image6.png')}}">
                             </div>
                             <div class="skill-text">
                                 <h3>Eliminate Joins, Simplify Querying</h3>
