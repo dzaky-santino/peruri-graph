@@ -255,63 +255,113 @@
     }
 
     .code-box {
-        background: #e9e9e9;
-        padding: 10px 10px 0px 10px;
+        border: 1px solid #e5e7eb;
         border-radius: 8px;
-        position: relative;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin: 1rem 0;
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
     .code-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 16px;
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 5px;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid #e5e7eb;
+        background: #f9fafb;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
     }
 
-    .copy-button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 18px;
-        color: #333;
-        transition: opacity 0.3s ease-in-out;
-        font-size: 24px;
+    .code-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #374151;
     }
 
-    .copy-button:hover {
-        color: #0057b7;
+    .code-container {
+        position: relative;
+        padding: 1rem;
+        padding-right: 80px;
     }
 
     .code-content {
-        background: #e9e9e9;
-        padding: 10px;
-        border-radius: 5px;
-        font-family: monospace;
-        font-size: 15px;
-        color: black;
-        text-align: left;
+        font-family: 'Consolas', 'Monaco', monospace;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        color: #1f2937;
+        max-height: 200px; /* Tinggi maksimal sebelum scroll */
+        overflow-y: auto;
+        padding-right: 3rem; /* Ruang untuk tombol copy */
     }
 
     .code-line {
-        margin: 0; /* Remove extra margins from the <p> tags */
-        white-space: pre; /* Ensure spaces and tabs are respected */
-        padding-left: 10px; /* Add indentation if needed */
-        font-size: 15px;
+        margin: 0;
+        padding: 0.125rem 0;
+        white-space: nowrap;
+        min-width: max-content;
     }
 
-    .copy-text {
-        font-size: 16px;
-        color: green;
-        font-weight: bold;
-        margin-left: 10px;
+    .copy-button {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        padding: 0.5rem;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: #374151;
+        transition: all 0.2s ease;
+    }
+
+    .copy-button:hover {
+        background: #f3f4f6;
+        border-color: #d1d5db;
+    }
+
+    .copy-icon, .success-icon {
+        width: 14px;
+        height: 14px;
+        margin-right: 0.375rem;
+        fill: currentColor;
+    }
+
+    .copy-success {
+        display: none;
+        color: #2563eb;
+    }
+
+    .copy-button.copied .copy-default {
         display: none;
     }
 
+    .copy-button.copied .copy-success {
+        display: flex;
+        align-items: center;
+    }
+
+    /* Styling scrollbar */
+    .code-content::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    .code-content::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+    }
+
+    .code-content::-webkit-scrollbar-thumb {
+        background: #d1d5db;
+        border-radius: 4px;
+    }
+
+    .code-content::-webkit-scrollbar-thumb:hover {
+        background: #9ca3af;
+    }
+    
     .content-video {
         width: 100%;   /* Membuat video responsif */
         max-width: 1000px; /* Menetapkan ukuran maksimum untuk video */
@@ -357,12 +407,7 @@
                                             Peruri Graph Analytics effectively reveals patterns of fraud and surfaces anomalies.
                                         </p>
                                     </div>
-                                    {{-- <div class="video-section">
-                                        <!-- Replace 'video-source-url' with the actual video URL or embed code -->
-                                        <iframe width="560" height="315" src="https://www.youtube.com/embed/M43a9ET_45U?si=iKAnnrVJETxIda_0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    </div> --}}
                                     <div class="image-section">
-                                        <!-- Ganti dengan gambar Anda -->
                                         <img src="{{ asset('images/image8.png')}}" class="image">
                                     </div>
                                 </div>
@@ -494,16 +539,29 @@
                             </p>
                             <div class="query-container">
                                 <h3 class="query-title">• <span>PURCHASED</span></h3>
-                                
+
                                 <div class="code-box">
                                     <div class="code-header">
-                                        <span>Cypher</span>
-                                        <button class="copy-button" data-target="cypher-code">
-                                            <i class="fa-regular fa-copy" id="copy-icon"></i>
-                                            <span id="copy-text" class="copy-text"></span>
+                                        <span class="code-title">Cypher</span>
+                                    </div>
+                                    <div class="code-container">
+                                        <div id="cypher-code1" class="code-content">
+                                            <div class="code-line">(customer)-[:PURCHASED]->(order)</div>
+                                        </div>
+                                        <button class="copy-button" data-copy-target="cypher-code1">
+                                            <span class="copy-default">
+                                                <svg class="copy-icon" viewBox="0 0 24 24">
+                                                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                                </svg>
+                                            </span>
+                                            <span class="copy-success">
+                                                <svg class="success-icon" viewBox="0 0 24 24">
+                                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                                </svg>
+                                                Copied!
+                                            </span>
                                         </button>
                                     </div>
-                                    <pre class="code-content" id="cypher-code">(customer)-[:PURCHASED]->(order)</pre>
                                 </div>
                         
                                 <p>
@@ -515,18 +573,32 @@
                                     Customer node with the Order node, indicating that the customer has made a purchase or order.
                                 </p>
                             </div>
+
                             <div class="query-container">
                                 <h3 class="query-title">• <span>ORDERS</span></h3>
-                                
+                            
                                 <div class="code-box">
                                     <div class="code-header">
-                                        <span>Cypher</span>
-                                        <button class="copy-button" data-target="cypher-code2">
-                                            <i class="fa-regular fa-copy" id="copy-icon2"></i>
-                                            <span id="copy-text2" class="copy-text"></span>
+                                        <span class="code-title">Cypher</span>
+                                    </div>
+                                    <div class="code-container">
+                                        <div id="cypher-code2" class="code-content">
+                                            <div class="code-line">(order)-[:ORDERS]->(product)</div>
+                                        </div>
+                                        <button class="copy-button" data-copy-target="cypher-code2">
+                                            <span class="copy-default">
+                                                <svg class="copy-icon" viewBox="0 0 24 24">
+                                                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                                </svg>
+                                            </span>
+                                            <span class="copy-success">
+                                                <svg class="success-icon" viewBox="0 0 24 24">
+                                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                                </svg>
+                                                Copied!
+                                            </span>
                                         </button>
                                     </div>
-                                    <pre class="code-content" id="cypher-code2">(order)-[:ORDERS]->(product)</pre>
                                 </div>
                         
                                 <p>
@@ -537,18 +609,32 @@
                                     It reflects that within an order, there are certain products ordered or purchased by the customer.
                                 </p>
                             </div>
+
                             <div class="query-container">
                                 <h3 class="query-title">• <span>PART_OF</span></h3>
                                 
                                 <div class="code-box">
                                     <div class="code-header">
-                                        <span>Cypher</span>
-                                        <button class="copy-button" data-target="cypher-code3">
-                                            <i class="fa-regular fa-copy" id="copy-icon3"></i>
-                                            <span id="copy-text3" class="copy-text"></span>
+                                        <span class="code-title">Cypher</span>
+                                    </div>
+                                    <div class="code-container">
+                                        <div id="cypher-code3" class="code-content">
+                                            <div class="code-line">(product)-[:PART_OF]->(category)</div>
+                                        </div>
+                                        <button class="copy-button" data-copy-target="cypher-code3">
+                                            <span class="copy-default">
+                                                <svg class="copy-icon" viewBox="0 0 24 24">
+                                                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                                </svg>
+                                            </span>
+                                            <span class="copy-success">
+                                                <svg class="success-icon" viewBox="0 0 24 24">
+                                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                                </svg>
+                                                Copied!
+                                            </span>
                                         </button>
                                     </div>
-                                    <pre class="code-content" id="cypher-code3">(product)-[:PART_OF]->(category)</pre>
                                 </div>
                         
                                 <p>
@@ -614,26 +700,37 @@
 
                             <div class="code-box">
                                 <div class="code-header">
-                                    <span>Cypher</span>
-                                    <button class="copy-button" data-target="cypher-code4">
-                                        <i class="fa-regular fa-copy" id="copy-icon4"></i>
-                                        <span id="copy-text4" class="copy-text"></span>
-                                    </button>
+                                    <span class="code-title">Cypher</span>
                                 </div>
-                                <div class="code-content" id="cypher-code4">
-                                    <p class="code-line">// Create a new Customer node</p>
-                                    <p class="code-line">CREATE (:Customer {</p>
-                                    <p class="code-line">   customerID: 'ALFKI',</p>
-                                    <p class="code-line">   companyName: 'Alfreds Futterkiste',</p>
-                                    <p class="code-line">   contactName: 'Maria Anders',</p>
-                                    <p class="code-line">   contactTitle: 'Sales Representative',</p>
-                                    <p class="code-line">   address: 'Obere Str. 57',</p>
-                                    <p class="code-line">   city: 'Berlin',</p>
-                                    <p class="code-line">   country: 'Germany',</p>
-                                    <p class="code-line">   postalCode: '12209',</p>
-                                    <p class="code-line">   phone: '030-0074321',</p>
-                                    <p class="code-line">   fax: '030-0076545'</p>
-                                    <p class="code-line">});</p>
+                                <div class="code-container">
+                                    <div id="cypher-code4" class="code-content">
+                                        <div class="code-line">// Create a new Customer node</div>
+                                        <div class="code-line">CREATE (:Customer {</div>
+                                        <div class="code-line">   customerID: 'ALFKI',</div>
+                                        <div class="code-line">   companyName: 'Alfreds Futterkiste',</div>
+                                        <div class="code-line">   contactName: 'Maria Anders',</div>
+                                        <div class="code-line">   contactTitle: 'Sales Representative',</div>
+                                        <div class="code-line">   address: 'Obere Str. 57',</div>
+                                        <div class="code-line">   city: 'Berlin',</div>
+                                        <div class="code-line">   country: 'Germany',</div>
+                                        <div class="code-line">   postalCode: '12209',</div>
+                                        <div class="code-line">   phone: '030-0074321',</div>
+                                        <div class="code-line">   fax: '030-0076545'</div>
+                                        <div class="code-line">});</div>
+                                    </div>
+                                    <button class="copy-button" data-copy-target="cypher-code4">
+                                        <span class="copy-default">
+                                            <svg class="copy-icon" viewBox="0 0 24 24">
+                                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                            </svg>
+                                        </span>
+                                        <span class="copy-success">
+                                            <svg class="success-icon" viewBox="0 0 24 24">
+                                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                            </svg>
+                                            Copied!
+                                        </span>
+                                    </button>
                                 </div>
                             </div>
                             
@@ -654,32 +751,44 @@
 
                             <div class="code-box">
                                 <div class="code-header">
-                                    <span>Cypher</span>
-                                    <button class="copy-button" data-target="cypher-code5">
-                                        <i class="fa-regular fa-copy" id="copy-icon5"></i>
-                                        <span id="copy-text5" class="copy-text"></span>
+                                    <span class="code-title">Cypher</span>
+                                </div>
+                                <div class="code-container">
+                                    <div id="cypher-code5" class="code-content">
+                                        <div class="code-line">// Create a new Order node</div>
+                                        <div class="code-line">CREATE (:Order {</div>
+                                        <div class="code-line">   orderID: '11011',</div>
+                                        <div class="code-line">   customerID: 'ALFKI',</div>
+                                        <div class="code-line">   employeeID: 3,</div>
+                                        <div class="code-line">   freight: 1.21,</div>
+                                        <div class="code-line">   orderDate: datetime('1998-04-09T00:00:00.000'),</div>
+                                        <div class="code-line">   requiredDate: datetime('1998-05-07T00:00:00.000'),</div>
+                                        <div class="code-line">   shipAddress: 'Obere Str. 57',</div>
+                                        <div class="code-line">   shipCity: 'Berlin',</div>
+                                        <div class="code-line">   shipCountry: 'Germany',</div>
+                                        <div class="code-line">   shipName: "Alfred's Futterkiste",</div>
+                                        <div class="code-line">   shipPostalCode: '12209',</div>
+                                        <div class="code-line">   shipRegion: NULL,</div>
+                                        <div class="code-line">   shipVia: 1,</div>
+                                        <div class="code-line">   shippedDate: datetime('1998-04-13T00:00:00.000')</div>
+                                        <div class="code-line">});</div>
+                                    </div>
+                                    <button class="copy-button" data-copy-target="cypher-code5">
+                                        <span class="copy-default">
+                                            <svg class="copy-icon" viewBox="0 0 24 24">
+                                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                            </svg>
+                                        </span>
+                                        <span class="copy-success">
+                                            <svg class="success-icon" viewBox="0 0 24 24">
+                                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                            </svg>
+                                            Copied!
+                                        </span>
                                     </button>
                                 </div>
-                                <div class="code-content" id="cypher-code5">
-                                    <p class="code-line">// Create a new Order node</p>
-                                    <p class="code-line">CREATE (:Order {</p>
-                                    <p class="code-line">   orderID: '11011',</p>
-                                    <p class="code-line">   customerID: 'ALFKI',</p>
-                                    <p class="code-line">   employeeID: 3,</p>
-                                    <p class="code-line">   freight: 1.21,</p>
-                                    <p class="code-line">   orderDate: datetime('1998-04-09T00:00:00.000'),</p>
-                                    <p class="code-line">   requiredDate: datetime('1998-05-07T00:00:00.000'),</p>
-                                    <p class="code-line">   shipAddress: 'Obere Str. 57',</p>
-                                    <p class="code-line">   shipCity: 'Berlin',</p>
-                                    <p class="code-line">   shipCountry: 'Germany',</p>
-                                    <p class="code-line">   shipName: "Alfred's Futterkiste",</p>
-                                    <p class="code-line">   shipPostalCode: '12209',</p>
-                                    <p class="code-line">   shipRegion: NULL,</p>
-                                    <p class="code-line">   shipVia: 1,</p>
-                                    <p class="code-line">   shippedDate: datetime('1998-04-13T00:00:00.000')</p>
-                                    <p class="code-line">});</p>
-                                </div>
                             </div>
+
                             <ul class="property-list">
                                 <li>
                                     <li><span class="property-name">In the example above:</span></li>
@@ -700,59 +809,117 @@
                                 Here is an example of how to create a relationship between a customer and order in the Northwind database:
                             </p>
                             <center><img src="{{ asset('images/image13.png')}}" class="content-image"></center>
+
                             <div class="code-box">
                                 <div class="code-header">
-                                    <span>Cypher</span>
-                                    <button class="copy-button" data-target="cypher-code6">
-                                        <i class="fa-regular fa-copy" id="copy-icon6"></i>
-                                        <span id="copy-text6" class="copy-text"></span>
+                                    <span class="code-title">Cypher</span>
+                                </div>
+                                <div class="code-container">
+                                    <div id="cypher-code6" class="code-content">
+                                        <div class="code-line">MATCH (customer:Customer {customerID: 'ALFKI'})</div>
+                                        <div class="code-line">MATCH (order:Order {orderID: '11011'})</div>
+                                        <div class="code-line">CREATE (customer)-[:PURCHASED]->(order);</div>
+                                    </div>
+                                    <button class="copy-button" data-copy-target="cypher-code6">
+                                        <span class="copy-default">
+                                            <svg class="copy-icon" viewBox="0 0 24 24">
+                                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                            </svg>
+                                        </span>
+                                        <span class="copy-success">
+                                            <svg class="success-icon" viewBox="0 0 24 24">
+                                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                            </svg>
+                                            Copied!
+                                        </span>
                                     </button>
                                 </div>
-                                <div class="code-content" id="cypher-code6">
-                                    <p class="code-line">MATCH (customer:Customer {customerID: 'ALFKI'})</p>
-                                    <p class="code-line">MATCH (order:Order {orderID: '11011'})</p>
-                                    <p class="code-line">CREATE (customer)-[:PURCHASED]->(order);</p>
-                                </div>
                             </div>
+
                             <p>The given Cypher query aims to create a <span>[:PURCHASED]</span> relationship between the <span>Customer</span> node and the <span>Order</span> node.</p>
 
                             <h2 style="color:#034ea1; font-size:20px;" >1. Matching the Existing Customer Nodes</h2>
+
                             <div class="code-box">
                                 <div class="code-header">
-                                    <span>Cypher</span>
-                                    <button class="copy-button" data-target="cypher-code7">
-                                        <i class="fa-regular fa-copy" id="copy-icon7"></i>
-                                        <span id="copy-text7" class="copy-text"></span>
+                                    <span class="code-title">Cypher</span>
+                                </div>
+                                <div class="code-container">
+                                    <div id="cypher-code7" class="code-content">
+                                        <div class="code-line">MATCH (customer:Customer {customerID: 'ALFKI'})</div>
+                                    </div>
+                                    <button class="copy-button" data-copy-target="cypher-code7">
+                                        <span class="copy-default">
+                                            <svg class="copy-icon" viewBox="0 0 24 24">
+                                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                            </svg>
+                                        </span>
+                                        <span class="copy-success">
+                                            <svg class="success-icon" viewBox="0 0 24 24">
+                                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                            </svg>
+                                            Copied!
+                                        </span>
                                     </button>
                                 </div>
-                                <pre class="code-content" id="cypher-code7">MATCH (customer:Customer {customerID: 'ALFKI'})</pre>
                             </div>
+
                             <p>Using <span>MATCH</span> to search for the customer node with <span>customerID</span> 'ALFKI'. The <span>customer</span> variable is used to reference this Customer node.</p>                   
 
                             <h2 style="color:#034ea1; font-size:20px;" >2. Matching the Existing Order Nodes</h2>
+
                             <div class="code-box">
                                 <div class="code-header">
-                                    <span>Cypher</span>
-                                    <button class="copy-button" data-target="cypher-code8">
-                                        <i class="fa-regular fa-copy" id="copy-icon8"></i>
-                                        <span id="copy-text8" class="copy-text"></span>
+                                    <span class="code-title">Cypher</span>
+                                </div>
+                                <div class="code-container">
+                                    <div id="cypher-code8" class="code-content">
+                                        <div class="code-line">MATCH (order:Order {orderID: '11011'})</div>
+                                    </div>
+                                    <button class="copy-button" data-copy-target="cypher-code8">
+                                        <span class="copy-default">
+                                            <svg class="copy-icon" viewBox="0 0 24 24">
+                                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                            </svg>
+                                        </span>
+                                        <span class="copy-success">
+                                            <svg class="success-icon" viewBox="0 0 24 24">
+                                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                            </svg>
+                                            Copied!
+                                        </span>
                                     </button>
                                 </div>
-                                <pre class="code-content" id="cypher-code8">MATCH (order:Order {orderID: '11011'})</pre>
                             </div>
+
                             <p>Using <span>MATCH</span> to search for the customer node with <span>orderID</span> '11011'. The order variable is used to reference this <span>Order</span> node.</p>
                         
                             <h2 style="color:#034ea1; font-size:20px;" >3. Connects the Customer Node and Order Node</h2>
+
                             <div class="code-box">
                                 <div class="code-header">
-                                    <span>Cypher</span>
-                                    <button class="copy-button" data-target="cypher-code9">
-                                        <i class="fa-regular fa-copy" id="copy-icon9"></i>
-                                        <span id="copy-text9" class="copy-text"></span>
+                                    <span class="code-title">Cypher</span>
+                                </div>
+                                <div class="code-container">
+                                    <div id="cypher-code9" class="code-content">
+                                        <div class="code-line">CREATE (customer)-[:PURCHASED]->(order)</div>
+                                    </div>
+                                    <button class="copy-button" data-copy-target="cypher-code9">
+                                        <span class="copy-default">
+                                            <svg class="copy-icon" viewBox="0 0 24 24">
+                                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                            </svg>
+                                        </span>
+                                        <span class="copy-success">
+                                            <svg class="success-icon" viewBox="0 0 24 24">
+                                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                            </svg>
+                                            Copied!
+                                        </span>
                                     </button>
                                 </div>
-                                <pre class="code-content" id="cypher-code9">CREATE (customer)-[:PURCHASED]->(order)</pre>
                             </div>
+
                             <p>Use <span>CREATE</span> to create a relationship of type <span>[:PURCHASED]</span> between the <span>Customer</span> node and the <span>Order</span> node. This relationship indicates that the customer has made a purchase from a specific order.</p>
                             <p>Executing this query will create a new relationship between the <span>Customer</span> node and the <span>Order</span> node that matches the predefined matching conditions. This relationship will have a <span>[:PURCHASED]</span> label, which provides the context that the customer has made a purchase through a specific order.</p>
                         </div>
@@ -791,106 +958,200 @@
                                 may also be interested in other products in the same category. Below is an example of applying category-based recommendations 
                                 using the Northwind dataset.
                             </p>
+
                             <h3>Identifying the Most Popular Products</h3>
+
                             <div class="code-box">
                                 <div class="code-header">
-                                    <span>Cypher</span>
-                                    <button class="copy-button" data-target="cypher-code10">
-                                        <i class="fa-regular fa-copy" id="copy-icon10"></i>
-                                        <span id="copy-text10" class="copy-text"></span>
+                                    <span class="code-title">Cypher</span>
+                                </div>
+                                <div class="code-container">
+                                    <div id="cypher-code10" class="code-content">
+                                        <div class="code-line">MATCH (cust:Customer)-[:PURCHASED]->(:Order)-[o:ORDERS]->(p:Product), (p)-[:PART_OF]->(c:Category)</div>
+                                        <div class="code-line">RETURN DISTINCT cust.customerID as CustomerID, c.categoryName AS ProductCategory, p.productName AS Product, SUM(o.quantity) AS</div>
+                                        <div class="code-line">TotalProductsPurchased</div>
+                                        <div class="code-line">ORDER BY TotalProductsPurchased DESC</div>
+                                    </div>
+                                    <button class="copy-button" data-copy-target="cypher-code10">
+                                        <span class="copy-default">
+                                            <svg class="copy-icon" viewBox="0 0 24 24">
+                                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                            </svg>
+                                        </span>
+                                        <span class="copy-success">
+                                            <svg class="success-icon" viewBox="0 0 24 24">
+                                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                            </svg>
+                                            Copied!
+                                        </span>
                                     </button>
                                 </div>
-                                <div class="code-content" id="cypher-code10">
-                                    <p class="code-line">MATCH (cust:Customer)-[:PURCHASED]->(:Order)-[o:ORDERS]->(p:Product), (p)-[:PART_OF]->(c:Category)</p>
-                                    <p class="code-line">RETURN DISTINCT cust.customerID as CustomerID, c.categoryName AS ProductCategory, p.productName AS Product, SUM(o.quantity) AS</p>
-                                    <p class="code-line">TotalProductsPurchased</p>
-                                    <p class="code-line">ORDER BY TotalProductsPurchased DESC</p>
-                                </div>
                             </div>
+
                             <p>This query involves searching for patterns of product purchases by customers and generating summary statistics, such as product category, products purchased, and total number of purchases.</p>
+                            
                             <ul class="property-list">
                                 <li style="font-size: 18px; color:#034ea1;"><span>1. Matching Graph Patterns</span>
                                     <p class="description" style="margin-top: 5px;">Using <span>MATCH</span> to match graph patterns. The <span>cust</span> node represents a customer, the <span>[:PURCHASED]</span> relation relates customers to orders, the <span>[o:ORDERS]</span> relation relates orders to products by storing the <span>quantity</span>, and the <span>[:PART_OF]</span> relation relates products to categories.</p>
                                 </li>
+
                                 <div class="code-box">
                                     <div class="code-header">
-                                        <span>Cypher</span>
-                                        <button class="copy-button" data-target="cypher-code11">
-                                            <i class="fa-regular fa-copy" id="copy-icon11"></i>
-                                            <span id="copy-text11" class="copy-text"></span>
+                                        <span class="code-title">Cypher</span>
+                                    </div>
+                                    <div class="code-container">
+                                        <div id="cypher-code11" class="code-content">
+                                            <div class="code-line">MATCH (cust:Customer)-[:PURCHASED]->(:Order)-[o:ORDERS]->(p:Product), (p)-[:PART_OF]->(c:Category)</div>
+                                        </div>
+                                        <button class="copy-button" data-copy-target="cypher-code11">
+                                            <span class="copy-default">
+                                                <svg class="copy-icon" viewBox="0 0 24 24">
+                                                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                                </svg>
+                                            </span>
+                                            <span class="copy-success">
+                                                <svg class="success-icon" viewBox="0 0 24 24">
+                                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                                </svg>
+                                                Copied!
+                                            </span>
                                         </button>
                                     </div>
-                                    <pre class="code-content" id="cypher-code11">MATCH (cust:Customer)-[:PURCHASED]->(:Order)-[o:ORDERS]->(p:Product), (p)-[:PART_OF]->(c:Category)</pre>
                                 </div>
+
                                 <li style="font-size: 18px; color:#034ea1;"><span>2. Return the Expected Data</span></li>
+                                
                                 <div class="code-box">
                                     <div class="code-header">
-                                        <span>Cypher</span>
-                                        <button class="copy-button" data-target="cypher-code11">
-                                            <i class="fa-regular fa-copy" id="copy-icon11"></i>
-                                            <span id="copy-text11" class="copy-text"></span>
+                                        <span class="code-title">Cypher</span>
+                                    </div>
+                                    <div class="code-container">
+                                        <div id="cypher-code12" class="code-content">
+                                            <div class="code-line">RETURN DISTINCT cust.customerID as CustomerID, c.categoryName AS ProductCategory, p.productName AS Product, SUM(o.quantity) AS TotalProductsPurchased</div>
+                                        </div>
+                                        <button class="copy-button" data-copy-target="cypher-code12">
+                                            <span class="copy-default">
+                                                <svg class="copy-icon" viewBox="0 0 24 24">
+                                                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                                </svg>
+                                            </span>
+                                            <span class="copy-success">
+                                                <svg class="success-icon" viewBox="0 0 24 24">
+                                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                                </svg>
+                                                Copied!
+                                            </span>
                                         </button>
                                     </div>
-                                    <pre class="code-content" id="cypher-code11">RETURN DISTINCT cust.customerID as CustomerID, c.categoryName AS ProductCategory, p.productName AS Product, SUM(o.quantity) AS TotalProductsPurchased</pre>
                                 </div>
+
                                 <p>Use <span>RETURN</span> to specify the columns to be returned:</p>
+                                
                                 <ul class="nested-list">
                                     <li style="font-size: 15px;"><span class="property-name">cust.contactName :</span> Customer ID.</li>
                                     <li style="font-size: 15px;"><span class="property-name">c.categoryName :</span> Name of the product category.</li>
                                     <li style="font-size: 15px;"><span class="property-name">p.productName :</span> Product name.</li>
                                     <li style="font-size: 15px;"><span class="property-name">SUM(o.quantity) :</span> The total number of products purchased, calculated using the SUM aggregation function from the quantity in the [o:ORDERS] relation.</li>
                                 </ul>
+                                
                                 <li style="font-size: 18px; color:#034ea1;"><span>3. Using DISTINCT</span>
                                     <p class="description" style="margin-top: 5px;">Using <span>DISTINCT</span> to ensure that each row of the returned result is unique.</p>
                                 </li>
+                                
                                 <li style="font-size: 18px; color:#034ea1;"><span>4. Sorting the Results</span></li>
+                                
                                 <div class="code-box">
                                     <div class="code-header">
-                                        <span>Cypher</span>
-                                        <button class="copy-button" data-target="cypher-code12">
-                                            <i class="fa-regular fa-copy" id="copy-icon12"></i>
-                                            <span id="copy-text12" class="copy-text"></span>
+                                        <span class="code-title">Cypher</span>
+                                    </div>
+                                    <div class="code-container">
+                                        <div id="cypher-code13" class="code-content">
+                                            <div class="code-line">ORDER BY TotalProductsPurchased DESC</div>
+                                        </div>
+                                        <button class="copy-button" data-copy-target="cypher-code13">
+                                            <span class="copy-default">
+                                                <svg class="copy-icon" viewBox="0 0 24 24">
+                                                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                                </svg>
+                                            </span>
+                                            <span class="copy-success">
+                                                <svg class="success-icon" viewBox="0 0 24 24">
+                                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                                </svg>
+                                                Copied!
+                                            </span>
                                         </button>
                                     </div>
-                                    <pre class="code-content" id="cypher-code12">ORDER BY TotalProductsPurchased DESC</pre>
                                 </div>
+
                                 <p class="description">Using <span>ORDER BY</span> to sort the results by the total number of products purchased in descending order <span>(DESC)</span>.</p>
+                                
                                 <center><img src="{{ asset('images/image14.png')}}" class="content-image"></center>
+                                
                                 <p>From the query results, we can get useful insights or understanding related to product purchasing patterns by customers. "Guaraná Fantástica" and "Konbu" were the two best-selling products with a total of 248 purchases each. In third place was "Camembert Pierrot" with 243 total purchases.</p>
                             </ul>
+                            
                             <hr>
+                            
                             <h2>New Product Recommendation</h2>
+
                             <div class="code-box">
                                 <div class="code-header">
-                                    <span>Cypher</span>
-                                    <button class="copy-button" data-target="cypher-code13">
-                                        <i class="fa-regular fa-copy" id="copy-icon13"></i>
-                                        <span id="copy-text13" class="copy-text"></span>
+                                    <span class="code-title">Cypher</span>
+                                </div>
+                                <div class="code-container">
+                                    <div id="cypher-code14" class="code-content">
+                                        <div class="code-line">MATCH (c:Customer)-[:PURCHASED]->(o:Order)-[:ORDERS]->(p:Product)<-[o2:ORDERS]-(:Order)-[:ORDERS]->(p2:Product)-[:PART_OF]->(cat:Category)<-[:PART_OF]-(p)</div>
+                                        <div class="code-line">WHERE c.customerID = 'QUICK' AND NOT((c)-[:PURCHASED]->(:Order)-[:ORDERS]->(p2)) AND p.productName = 'Camembert Pierrot'</div>
+                                        <div class="code-line">RETURN p.productName AS has_purchased, cat.categoryName AS category, p2.productName AS recommendation, SUM(o2.quantity) AS</div>
+                                        <div class="code-line">TotalProductsPurchased</div>
+                                        <div class="code-line">ORDER BY TotalProductsPurchased DESC</div>
+                                    </div>
+                                    <button class="copy-button" data-copy-target="cypher-code14">
+                                        <span class="copy-default">
+                                            <svg class="copy-icon" viewBox="0 0 24 24">
+                                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                            </svg>
+                                        </span>
+                                        <span class="copy-success">
+                                            <svg class="success-icon" viewBox="0 0 24 24">
+                                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                            </svg>
+                                            Copied!
+                                        </span>
                                     </button>
                                 </div>
-                                <div class="code-content" id="cypher-code13">
-                                    <p class="code-line">MATCH (c:Customer)-[:PURCHASED]->(o:Order)-[:ORDERS]->(p:Product)<-[o2:ORDERS]-(:Order)-[:ORDERS]->(p2:Product)-[:PART_OF]</p>
-                                    <p class="code-line">->(cat:Category)<-[:PART_OF]-(p)</p>
-                                    <p class="code-line">WHERE c.customerID = 'QUICK' AND NOT((c)-[:PURCHASED]->(:Order)-[:ORDERS]->(p2)) AND p.productName = 'Camembert Pierrot'</p>
-                                    <p class="code-line">RETURN p.productName AS has_purchased, cat.categoryName AS category, p2.productName AS recommendation, SUM(o2.quantity) AS</p>
-                                    <p class="code-line">TotalProductsPurchased</p>
-                                    <p class="code-line">ORDER BY TotalProductsPurchased DESC</p>
-                                </div>
                             </div>
+                            
                             <ul class="property-list">
                                 <li style="font-size: 18px; color:#034ea1;"><span>1. Matching Graph Patterns</span></li>
                                 <div class="code-box">
                                     <div class="code-header">
-                                        <span>Cypher</span>
-                                        <button class="copy-button" data-target="cypher-code14">
-                                            <i class="fa-regular fa-copy" id="copy-icon14"></i>
-                                            <span id="copy-text14" class="copy-text"></span>
+                                        <span class="code-title">Cypher</span>
+                                    </div>
+                                    <div class="code-container">
+                                        <div id="cypher-code15" class="code-content">
+                                            <div class="code-line">MATCH (c:Customer)-[:PURCHASED]->(o:Order)-[:ORDERS]->(p:Product)<-[:ORDERS]-(o2:Order)-[:ORDERS]->(p2:Product)-[:PART_OF]->(cat:Category)<-[:PART_OF]-(p)</div>
+                                        </div>
+                                        <button class="copy-button" data-copy-target="cypher-code15">
+                                            <span class="copy-default">
+                                                <svg class="copy-icon" viewBox="0 0 24 24">
+                                                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                                </svg>
+                                            </span>
+                                            <span class="copy-success">
+                                                <svg class="success-icon" viewBox="0 0 24 24">
+                                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                                </svg>
+                                                Copied!
+                                            </span>
                                         </button>
                                     </div>
-                                    <pre class="code-content" id="cypher-code14">MATCH (c:Customer)-[:PURCHASED]->(o:Order)-[:ORDERS]->(p:Product)<-[:ORDERS]-(o2:Order)-[:ORDERS]->(p2:Product)-[:PART_OF]->(cat:Category)<-[:PART_OF]-(p)</pre>
                                 </div>
                             </ul>
+                            
                             <p>Using <span>MATCH</span> to match graph patterns. Here:</p>
+                            
                             <ul class="nested-list">
                                 <li style="font-size: 15px;"><span class="property-name">c:Customer :</span> Customer node with label Customer.</li>
                                 <li style="font-size: 15px;"><span class="property-name">o:Order :</span> Order node with label Order.</li>
@@ -899,62 +1160,113 @@
                                 <li style="font-size: 15px;"><span class="property-name">cat:Category :</span> Category node with the label Category.</li>
                                 <li style="font-size: 15px;">This pattern includes :<span class="property-name">PURCHASED</span> , o2:ORDERS, and :PART_OF relations between nodes that create product, order, and category purchase paths.</li>
                             </ul>
+                            
                             <ul class="property-list">
                                 <li style="font-size: 18px; color:#034ea1;"><span>2. Filter Customers and Products Purchased</span></li>
                                 <div class="code-box">
                                     <div class="code-header">
-                                        <span>Cypher</span>
-                                        <button class="copy-button" data-target="cypher-code15">
-                                            <i class="fa-regular fa-copy" id="copy-icon15"></i>
-                                            <span id="copy-text15" class="copy-text"></span>
+                                        <span class="code-title">Cypher</span>
+                                    </div>
+                                    <div class="code-container">
+                                        <div id="cypher-code16" class="code-content">
+                                            <div class="code-line">WHERE c.customerID = 'QUICK' AND NOT((c)-[:PURCHASED]->(:Order)-[:ORDERS]->(p2)) AND p.productName = 'Camembert Pierrot'</div>
+                                        </div>
+                                        <button class="copy-button" data-copy-target="cypher-code16">
+                                            <span class="copy-default">
+                                                <svg class="copy-icon" viewBox="0 0 24 24">
+                                                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                                </svg>
+                                            </span>
+                                            <span class="copy-success">
+                                                <svg class="success-icon" viewBox="0 0 24 24">
+                                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                                </svg>
+                                                Copied!
+                                            </span>
                                         </button>
                                     </div>
-                                    <pre class="code-content" id="cypher-code15">WHERE c.customerID = 'QUICK' AND NOT((c)-[:PURCHASED]->(:Order)-[:ORDERS]->(p2)) AND p.productName = 'Camembert Pierrot'</pre>
                                 </div>
                             </ul>
+                            
                             <p>Using <span>WHERE</span> to apply a filter for customers with ID 'QUICK' who have not purchased the same product (<span>Camembert Pierrot</span>) and retrieve the product with that name.</p> 
+                            
                             <ul class="property-list">
                                 <li style="font-size: 18px; color:#034ea1;"><span>3. Return the Expected Data</span></li>
                                 <div class="code-box">
                                     <div class="code-header">
-                                        <span>Cypher</span>
-                                        <button class="copy-button" data-target="cypher-code16">
-                                            <i class="fa-regular fa-copy" id="copy-icon16"></i>
-                                            <span id="copy-text16" class="copy-text"></span>
+                                        <span class="code-title">Cypher</span>
+                                    </div>
+                                    <div class="code-container">
+                                        <div id="cypher-code17" class="code-content">
+                                            <div class="code-line">RETURN p.productName AS has_purchased, cat.categoryName AS category, p2.productName AS recommendation, SUM(o2.quantity) AS TotalProductsPurchased</div>
+                                        </div>
+                                        <button class="copy-button" data-copy-target="cypher-code17">
+                                            <span class="copy-default">
+                                                <svg class="copy-icon" viewBox="0 0 24 24">
+                                                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                                </svg>
+                                            </span>
+                                            <span class="copy-success">
+                                                <svg class="success-icon" viewBox="0 0 24 24">
+                                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                                </svg>
+                                                Copied!
+                                            </span>
                                         </button>
                                     </div>
-                                    <pre class="code-content" id="cypher-code16">RETURN p.productName AS has_purchased, cat.categoryName AS category, p2.productName AS recommendation, SUM(o2.quantity) AS TotalProductsPurchased</pre>
                                 </div>
                             </ul>
+                            
                             <p>Use <span>RETURN</span> to return specific columns:</p>
+                            
                             <ul class="nested-list">
                                 <li style="font-size: 15px;"><span class="property-name">p.productName :</span> The name of the product that the customer has purchased.</li>
                                 <li style="font-size: 15px;"><span class="property-name">c.categoryName :</span> The name of the product category.</li>
                                 <li style="font-size: 15px;"><span class="property-name">p2.productName :</span> The name of the recommended product.</li>
                                 <li style="font-size: 15px;"><span class="property-name">SUM(o.quantity) :</span> The total number of products purchased, calculated using the aggregation function <span>SUM</span> of the quantities (<span>quantity</span>) in the relation <span>[o2:ORDERS]</span>.</li>
                             </ul>
+                            
                             <ul class="property-list">
                                 <li style="font-size: 18px; color:#034ea1;"><span>4. Sorting the Results</span></li>
                                 <div class="code-box">
                                     <div class="code-header">
-                                        <span>Cypher</span>
-                                        <button class="copy-button" data-target="cypher-code17">
-                                            <i class="fa-regular fa-copy" id="copy-icon17"></i>
-                                            <span id="copy-text17" class="copy-text"></span>
+                                        <span class="code-title">Cypher</span>
+                                    </div>
+                                    <div class="code-container">
+                                        <div id="cypher-code18" class="code-content">
+                                            <div class="code-line">ORDER BY TotalProductsPurchased DESC</div>
+                                        </div>
+                                        <button class="copy-button" data-copy-target="cypher-code18">
+                                            <span class="copy-default">
+                                                <svg class="copy-icon" viewBox="0 0 24 24">
+                                                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                                </svg>
+                                            </span>
+                                            <span class="copy-success">
+                                                <svg class="success-icon" viewBox="0 0 24 24">
+                                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                                </svg>
+                                                Copied!
+                                            </span>
                                         </button>
                                     </div>
-                                    <pre class="code-content" id="cypher-code17">ORDER BY TotalProductsPurchased DESC</pre>
                                 </div>
                             </ul>
+                            
                             <p>Using <span>ORDER</span> BY to sort the results by the number of total products purchased of the recommended product order in descending order (<span>DESC</span>).</p> 
+                            
                             <hr>
+                            
                             <h2>Result</h2>
+                            
                             <center><img src="{{ asset('images/image15.png')}}" class="content-image"></center>
+                            
                             <p>In the query result, there are other product recommendations from the "Dairy Products" category that may be of interest to 'QUICK' 
                                 customers based on the purchase pattern of other customers who also purchased 'Camembert Pierrot'. "Queso Manchego La Pastora" 
                                 is the top recommendation with a total of 148 purchases by other customers. "Mascarpone Fabioli" was also recommended, 
                                 although with a lower total purchase (8).
                             </p>
+                            
                             <ul class="property-list">
                                 <li>
                                     <li style="margin-bottom: 5px;"><span class="property-name">• First Query: Identifying Key Purchases</span></li>
@@ -964,6 +1276,7 @@
                                     </ul>
                                 </li>
                             </ul>
+                            
                             <ul class="property-list">
                                 <li>
                                     <li style="margin-bottom: 5px;"><span class="property-name">• Second Query: Improve Product Recommendations</span></li>
@@ -974,6 +1287,7 @@
                                     </ul>
                                 </li>
                             </ul>
+                            
                             <ul class="property-list">
                                 <li>
                                     <li style="margin-bottom: 5px;"><span class="property-name">• New Product Recommendation</span></li>
@@ -983,136 +1297,212 @@
                                     </ul>
                                 </li>
                             </ul>
+                            
                             <p>By using this kind of query, companies can improve customer experience by providing relevant product recommendations based on other customers' purchasing behavior. This can help in marketing strategies, increasing sales, and even improving customer satisfaction.</p>
+                            
                             <center>
                                 <video class="content-video" controls>
                                     <source src="{{ asset('videos/result_category_based.mp4') }}" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
                             </center>                            
+                            
                             <hr>
+                            
                             <h2>Collaborative Filtering Recommendation - By Product Purchase</h2>
+                            
                             <p>Collaborative filtering is a technique in recommender systems where recommendations are provided based on behavioral patterns and preferences of users similar to the target user. The principle is that recommending products based on similarities in purchases by other customers, without a specific focus on a particular category. Below is an example of applying collaborative filtering recommendations using the Northwind dataset.</p>
+                            
                             <h2 style="color:#034ea1; font-size:20px;" >Find Behavioral Patterns</h2>
                             <div class="code-box">
                                 <div class="code-header">
-                                    <span>Cypher</span>
-                                    <button class="copy-button" data-target="cypher-code18">
-                                        <i class="fa-regular fa-copy" id="copy-icon18"></i>
-                                        <span id="copy-text18" class="copy-text"></span>
+                                    <span class="code-title">Cypher</span>
+                                </div>
+                                <div class="code-container">
+                                    <div id="cypher-code19" class="code-content">
+                                        <div class="code-line">MATCH (targetCustomer:Customer {customerID: 'CONSH'})-[:PURCHASED]->(:Order)-[:ORDERS]->(p1:Product) WITH targetCustomer, p1</div>
+                                        <div class="code-line">MATCH (otherCustomer:Customer)-[:PURCHASED]->(order:Order)-[:ORDERS]-(p2:Product)</div>
+                                        <div class="code-line">WHERE otherCustomer <> targetCustomer AND NOT (targetCustomer)-[:PURCHASED]->(p2)</div>
+                                        <div class="code-line">WITH targetCustomer, p2, COUNT(order) AS purchaseFrequency</div>
+                                        <div class="code-line">RETURN p2.productName AS RecommendedProduct, purchaseFrequency AS PurchaseFrequency</div>
+                                        <div class="code-line">ORDER BY purchaseFrequency DESC LIMIT 6;</div>
+                                    </div>
+                                    <button class="copy-button" data-copy-target="cypher-code19">
+                                        <span class="copy-default">
+                                            <svg class="copy-icon" viewBox="0 0 24 24">
+                                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                            </svg>
+                                        </span>
+                                        <span class="copy-success">
+                                            <svg class="success-icon" viewBox="0 0 24 24">
+                                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                            </svg>
+                                            Copied!
+                                        </span>
                                     </button>
                                 </div>
-                                <div class="code-content" id="cypher-code18">
-                                    <p class="code-line">MATCH (targetCustomer:Customer {customerID: 'CONSH'})-[:PURCHASED]->(:Order)-[:ORDERS]->(p1:Product) WITH targetCustomer, p1</p>
-                                    <p class="code-line">MATCH (otherCustomer:Customer)-[:PURCHASED]->(order:Order)-[:ORDERS]-(p2:Product)</p>
-                                    <p class="code-line">WHERE otherCustomer <> targetCustomer AND NOT (targetCustomer)-[:PURCHASED]->(p2)</p>
-                                    <p class="code-line">WITH targetCustomer, p2, COUNT(order) AS purchaseFrequency</p>
-                                    <p class="code-line">RETURN p2.productName AS RecommendedProduct, purchaseFrequency AS PurchaseFrequency</p>
-                                    <p class="code-line">ORDER BY purchaseFrequency DESC LIMIT 6;</p>
-                                </div>
                             </div>
+                            
                             <p>The purpose of this query is to provide product recommendations to customers with ID 'CONSH' based on product purchasing patterns by other customers who have similar purchasing preferences.</p>
+                            
                             <ul class="property-list">
                                 <li style="font-size: 18px; color:#034ea1;"><span>1. Search for Target Customer Purchases</span></li>
                                 <div class="code-box">
                                     <div class="code-header">
-                                        <span>Cypher</span>
-                                        <button class="copy-button" data-target="cypher-code19">
-                                            <i class="fa-regular fa-copy" id="copy-icon19"></i>
-                                            <span id="copy-text19" class="copy-text"></span>
+                                        <span class="code-title">Cypher</span>
+                                    </div>
+                                    <div class="code-container">
+                                        <div id="cypher-code20" class="code-content">
+                                            <div class="code-line">MATCH (targetCustomer:Customer {customerID: 'CONSH'})-[:PURCHASED]->(:Order)-[:ORDERS]->(p1:Product) WITH targetCustomer, p1</div>
+                                        </div>
+                                        <button class="copy-button" data-copy-target="cypher-code20">
+                                            <span class="copy-default">
+                                                <svg class="copy-icon" viewBox="0 0 24 24">
+                                                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                                </svg>
+                                            </span>
+                                            <span class="copy-success">
+                                                <svg class="success-icon" viewBox="0 0 24 24">
+                                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                                </svg>
+                                                Copied!
+                                            </span>
                                         </button>
                                     </div>
-                                    <pre class="code-content" id="cypher-code19">MATCH (targetCustomer:Customer {customerID: 'CONSH'})-[:PURCHASED]->(:Order)-[:ORDERS]->(p1:Product) WITH targetCustomer, p1</pre>
                                 </div>
                             </ul>
+                            
                             <p>Retrieves the products that have been purchased by the target customer ('CONSH').</p>
+                            
                             <p>Using <span>MATCH</span> to match the graph pattern. Here:</p>
+                            
                             <ul class="nested-list">
                                 <li style="font-size: 15px;"><span class="property-name">targetCustomer :</span> The target customer node with customerID 'CONSH'.</li>
                                 <li style="font-size: 15px;"><span class="property-name">p1 :</span> The product node purchased by the target customer.</li>
                             </ul>
+                            
                             <ul class="property-list">
                                 <li style="font-size: 18px; color:#034ea1;"><span>2. Calculating the Frequency of Purchases by Other Customers</span></li>
                             </ul>
+                            
                             <div class="code-box">
                                 <div class="code-header">
-                                    <span>Cypher</span>
-                                    <button class="copy-button" data-target="cypher-code20">
-                                        <i class="fa-regular fa-copy" id="copy-icon20"></i>
-                                        <span id="copy-text20" class="copy-text"></span>
+                                    <span class="code-title">Cypher</span>
+                                </div>
+                                <div class="code-container">
+                                    <div id="cypher-code21" class="code-content">
+                                        <div class="code-line">MATCH (otherCustomer:Customer)-[:PURCHASED]->(order:Order)-[:ORDERS]-(p2:Product)</div>
+                                        <div class="code-line">WHERE otherCustomer <> targetCustomer AND NOT (targetCustomer)-[:PURCHASED]->(p2)</div>
+                                        <div class="code-line">WITH targetCustomer, p2, COUNT(order) AS purchaseFrequency</div>
+                                    </div>
+                                    <button class="copy-button" data-copy-target="cypher-code21">
+                                        <span class="copy-default">
+                                            <svg class="copy-icon" viewBox="0 0 24 24">
+                                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                            </svg>
+                                        </span>
+                                        <span class="copy-success">
+                                            <svg class="success-icon" viewBox="0 0 24 24">
+                                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                            </svg>
+                                            Copied!
+                                        </span>
                                     </button>
                                 </div>
-                                <div class="code-content" id="cypher-code20">
-                                    <p class="code-line">MATCH (otherCustomer:Customer)-[:PURCHASED]->(order:Order)-[:ORDERS]-(p2:Product)</p>
-                                    <p class="code-line">WHERE otherCustomer <> targetCustomer AND NOT (targetCustomer)-[:PURCHASED]->(p2)</p>
-                                    <p class="code-line">WITH targetCustomer, p2, COUNT(order) AS purchaseFrequency</p>
-                                </div>
                             </div>
+
                             <p>Search for products purchased by other customers and ensure that we only consider customers who are different 
                                 from the target customer and products that have never been purchased by the target customer. 
                                 Then calculate the frequency of purchase of each product by other customers.
                             </p>
+                            
                             <p>Uses <span>MATCH</span> to match graph patterns.</p>
+                            
                             <ul class="nested-list">
                                 <li style="font-size: 15px;"><span>otherCustomer :</span> Another customer node that is not the same as the target customer.</li>
                                 <li style="font-size: 15px;"><span>p2 :</span> A product node that is different from the product purchased by the target customer.</li>
                                 <li style="font-size: 15px;">Using <span>WHERE</span> to filter <span>otherCustomer</span> instead of <span>targetCustomer</span>. Also ensures that <span>targetCustomer</span> has not purchased product <span>p2</span>.</li>
                                 <li style="font-size: 15px;">Uses <span>WITH</span> to store the previous matching result and count the number of orders placed by <span>otherCustomer</span>.</li>
                             </ul>
+                            
                             <ul class="property-list">
                                 <li style="font-size: 18px; color:#034ea1;"><span>3. Return Product Recommendations</span></li>
                             </ul>
                             <div class="code-box">
                                 <div class="code-header">
-                                    <span>Cypher</span>
-                                    <button class="copy-button" data-target="cypher-code21">
-                                        <i class="fa-regular fa-copy" id="copy-icon21"></i>
-                                        <span id="copy-text21" class="copy-text"></span>
+                                    <span class="code-title">Cypher</span>
+                                </div>
+                                <div class="code-container">
+                                    <div id="cypher-code22" class="code-content">
+                                        <div class="code-line">RETURN p2.productName AS RecommendedProduct, purchaseFrequency AS PurchaseFrequency</div>
+                                        <div class="code-line">ORDER BY purchaseFrequency DESC</div>
+                                        <div class="code-line">LIMIT 6;</div>
+                                    </div>
+                                    <button class="copy-button" data-copy-target="cypher-code22">
+                                        <span class="copy-default">
+                                            <svg class="copy-icon" viewBox="0 0 24 24">
+                                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                            </svg>
+                                        </span>
+                                        <span class="copy-success">
+                                            <svg class="success-icon" viewBox="0 0 24 24">
+                                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                                            </svg>
+                                            Copied!
+                                        </span>
                                     </button>
                                 </div>
-                                <div class="code-content" id="cypher-code21">
-                                    <p class="code-line">RETURN p2.productName AS RecommendedProduct, purchaseFrequency AS PurchaseFrequency</p>
-                                    <p class="code-line">ORDER BY purchaseFrequency DESC</p>
-                                    <p class="code-line">LIMIT 6;</p>
-                                </div>
                             </div>
+
                             <p>Use <span>RETURN</span> to return a product name (RecommendedProduct) containing 
                                 product recommendations and their purchase frequency (PurchaseFrequency) 
                                 for product p2, sorted in descending order based on the product's purchase 
                                 frequency and limit the number of recommendations displayed.
                             </p>
+                            
                             <hr>
+                            
                             <h2>Result</h2>
+                            
                             <center><img src="{{ asset('images/image16.png')}}" class="content-image"></center>
+                            
                             <center><img src="{{ asset('images/image17.png')}}" class="content-image"></center>
+                            
                             <p>From the query results, we can infer some insights related to product recommendations to 'CONSH' customers based on other customers' purchasing patterns:</p>
+                            
                             <ul class="property-list">
                                 <li style="font-size: 18px; color:#034ea1;"><span>• Most Recommended Product</span></li>
                                 <p>"Raclette Courdavault" is the most recommended product with a purchase frequency of 378. This shows that this product is highly demanded by other customers who share similar preferences with 'CONSH' customers.</p>
                             </ul>
+                            
                             <ul class="property-list">
                                 <li style="font-size: 18px; color:#034ea1;"><span>• Most Recommended Product</span></li>
                                 <p>"Guaraná Fantástica", "Camembert Pierrot", and "Gorgonzola Telino" have a high frequency of purchase with a score of 357 each. These products are also top recommendations with high popularity.</p>
                             </ul>
+                            
                             <ul class="property-list">
                                 <li style="font-size: 18px; color:#034ea1;"><span>• Diversification of Recommended Products</span></li>
                                 <p>Product recommendations include various types, such as beverages ("Guaraná Fantástica"), cheeses ("Raclette Courdavault", "Camembert Pierrot", "Gorgonzola Telino"), pasta ("Gnocchi di nonna Alice"), and cakes ("Tarte au sucre"). This shows the variety of products recommended to 'CONSH' customers.</p>
                             </ul>
+                            
                             <ul class="property-list">
                                 <li style="font-size: 18px; color:#034ea1;"><span>• Potential 'CONSH' Customer Favorites</span></li>
                                 <p>Based on the recommendations, we can assume that customer 'CONSH' is likely to have a preference for food products such as cheese, drinks, pasta, and cake based on the purchasing patterns of other customers.</p>
                             </ul>
+                            
                             <ul class="property-list">
                                 <li style="font-size: 18px; color:#034ea1;"><span>• Potential Marketing Strategy</span></li>
                                 <p>This information can be used to develop more targeted marketing strategies, such as special promotions, bundle packages, or discount campaigns for the most recommended products.</p>
                             </ul>
+                            
                             <p>By understanding the results of this query, companies can improve the shopping experience of 'CONSH' customers by providing product recommendations that are more in line with their preferences.</p>
+                            
                             <center>
                                 <video class="content-video" controls>
                                     <source src="{{ asset('videos/result_collaborative_filtering.mp4') }}" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
-                            </center>   
+                            </center> 
                         </div>
                     </div>
                 </div>
@@ -1125,7 +1515,6 @@
 @endsection
 
 <script>
-    // Fungsi untuk membuka tab berdasarkan event dan tabId
     function openTab(event, tabId) {
         // Hapus semua "active" dari tab-button
         let tabButtons = document.querySelectorAll(".tab-button");
@@ -1136,60 +1525,77 @@
         tabContents.forEach(content => content.classList.remove("active"));
 
         // Tambahkan "active" ke tab yang dipilih
-        document.getElementById(tabId).classList.add("active");
+        const targetContent = document.getElementById(tabId);
+        targetContent.classList.add("active");
 
         // Tambahkan "active" ke tombol yang diklik
         event.currentTarget.classList.add("active");
 
-        // Cari elemen dengan id yang sesuai dengan tab yang dipilih
-        const targetContent = document.getElementById(tabId);
+        // Tunggu sebentar agar konten tab selesai ditampilkan
+        setTimeout(() => {
+            // Cari elemen teks pertama (h2 atau p) dalam tab yang aktif
+            const firstTextElement = targetContent.querySelector('h2, p');
+            
+            if (firstTextElement) {
+                // Hitung posisi elemen relatif terhadap halaman
+                const elementPosition = firstTextElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset;
 
-        // Gulirkan halaman untuk menampilkan elemen tab yang dipilih
-        targetContent.scrollIntoView({
-            behavior: 'smooth', // Smooth scroll untuk pengalaman yang lebih baik
-            block: 'start' // Menyesuaikan agar konten tab muncul di bagian atas viewport
-        });
+                // Scroll ke posisi elemen dengan offset
+                window.scrollTo({
+                    top: offsetPosition - 100, // Kurangi 100px untuk memberikan ruang di atas
+                    behavior: 'smooth'
+                });
+            }
+        }, 100); // Tunggu 100ms
     }
 
-    // Menunggu sampai konten DOM sepenuhnya dimuat
     document.addEventListener('DOMContentLoaded', () => {
-        // Seleksi semua tombol copy dengan kelas "copy-button"
-        const copyButtons = document.querySelectorAll('.copy-button');
+    const copyButtons = document.querySelectorAll('.copy-button');
 
-        // Tambahkan event listener untuk setiap tombol copy
-        copyButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                // Ambil id dari elemen yang disalin, menggunakan atribut data-target
-                const targetId = button.getAttribute('data-target');
-                const codeText = document.getElementById(targetId).innerText;
+    copyButtons.forEach(button => {
+        button.addEventListener('click', async () => {
+            const targetId = button.getAttribute('data-copy-target');
+            const codeContent = document.getElementById(targetId);
+            const codeText = Array.from(codeContent.querySelectorAll('.code-line'))
+                                 .map(line => line.textContent)
+                                 .join('\n');
 
-                // Membuat elemen input sementara untuk menyalin teks
-                let tempInput = document.createElement('textarea');
-                tempInput.value = codeText;
-                document.body.appendChild(tempInput);
-
-                // Pilih dan salin teks
-                tempInput.select();
+            try {
+                await navigator.clipboard.writeText(codeText);
+                showCopySuccess(button);
+            } catch (err) {
+                // Fallback untuk browser yang tidak mendukung Clipboard API
+                const textarea = document.createElement('textarea');
+                textarea.value = codeText;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
                 document.execCommand('copy');
-
-                // Hapus elemen input sementara
-                document.body.removeChild(tempInput);
-
-                // Dapatkan ikon dan teks untuk perubahan status
-                const copyIcon = button.querySelector('i');
-                const copyText = button.querySelector('.copy-text');
-
-                // Tampilkan "Copied!" dan sembunyikan ikon copy
-                copyIcon.style.display = 'none';
-                copyText.textContent = 'Copied!';
-                copyText.style.display = 'inline';
-
-                // Kembalikan ikon dan sembunyikan teks setelah 2 detik
-                setTimeout(() => {
-                    copyIcon.style.display = 'inline';
-                    copyText.style.display = 'none';
-                }, 2000);
-            });
+                document.body.removeChild(textarea);
+                showCopySuccess(button);
+            }
         });
     });
+
+    function showCopySuccess(button) {
+        button.classList.add('copied');
+        
+        setTimeout(() => {
+            button.classList.remove('copied');
+        }, 2000);
+    }
+
+    // Tambahkan scroll otomatis jika konten melebihi 5 baris
+    const codeContents = document.querySelectorAll('.code-content');
+    codeContents.forEach(content => {
+        const lines = content.querySelectorAll('.code-line');
+        if (lines.length > 5) {
+            content.style.maxHeight = '150px'; // Sekitar 5 baris kode
+        } else {
+            content.style.maxHeight = 'none';
+        }
+    });
+});
 </script>
