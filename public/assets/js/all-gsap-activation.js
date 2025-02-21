@@ -42,21 +42,21 @@ var screen_width = window.screen.width;
 
 // mousemove animation
 
-var $circle = $('.mouse-circle-mover'),
-    $follow = $('.mouse-circle-mover-follow');
+// var $circle = $('.mouse-circle-mover'),
+//     $follow = $('.mouse-circle-mover-follow');
 
-function moveCircle(e) {
-    TweenLite.to($circle, 1, {
-        x: e.clientX,
-        y: e.clientY
-    });
-    TweenLite.to($follow, 1.5, {
-        x: e.clientX,
-        y: e.clientY
-    });
-}
+// function moveCircle(e) {
+//     TweenLite.to($circle, 1, {
+//         x: e.clientX,
+//         y: e.clientY
+//     });
+//     TweenLite.to($follow, 1.5, {
+//         x: e.clientX,
+//         y: e.clientY
+//     });
+// }
 
-$(window).on('mousemove', moveCircle);
+// $(window).on('mousemove', moveCircle);
 
 
 // Button Hover Animation
