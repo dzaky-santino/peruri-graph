@@ -31,6 +31,8 @@
         height: auto;
         margin-right: 10px;
     }
+
+
 </style>
 
 @section('content')
@@ -84,9 +86,9 @@
     <section class="service-area ptb-120">
         <div class="container">
             <div class="service-wrap">
-                <div class="row align-items-center">
+                <div class="row align-items-center justify-content-center"> <!-- Tambahkan justify-content-center -->
                     <!-- Kolom untuk teks -->
-                    <div class="col-md-6">
+                    <div class="col-md-6 col-12">
                         <div class="service-item wow fadeInUp" data-wow-duration="1000ms">
                             <div class="service-text">
                                 <h3>Experience the difference with our exceptional product</h3>
@@ -97,9 +99,9 @@
                         </div>
                     </div>
                     <!-- Kolom untuk gambar -->
-                    <div class="col-md-6">
-                        <div class="service-image text-center wow fadeInUp" data-wow-duration="1000ms">
-                            <img src="{{ asset('images/image9.png')}}" alt="Service Image" class="img-fluid" style="max-width: 70%; border-radius: 10px;">
+                    <div class="col-md-6 col-12 d-none d-md-block">
+                        <div class="service-image wow fadeInUp" data-wow-duration="1000ms">
+                            <img src="{{ asset('images/image9.png')}}" style="width: 90%">
                         </div>
                     </div>
                 </div>
@@ -112,81 +114,66 @@
     <!-- start of ch-skill-area -->
     <section class="ch-skill-area ptb-120">
         <div class="container">
-            <div class="ch-title-wrap">
-                <div class="row justify-content-center">
-                    <div class="col-xl-5 col-lg-8 col-12">
-                        <div class="ch-top-title">
-                            {{-- <span>Our Features</span> --}}
-                            <h2 class="site-split-text ch-split-in-right" id="features">Our Features</h2>
-                            {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-                                nisi ut aliquip ex ea commodo consequat.
-                            </p> --}}
-                        </div>
-                    </div>
-                    <div class="col-xl-7 col-lg-4 col-12">
-                        {{-- <div class="ch-top-btn">
-                            <a href="#" class="ch-btn-style-1 ch-btn-animated">See More</a>
-                        </div> --}}
+            <div class="row justify-content-center">
+                <div class="col-xl-5 col-lg-8 col-12">
+                    <div class="ch-top-title">
+                        <h2 class="site-split-text ch-split-in-right" id="features">Our Features</h2>
                     </div>
                 </div>
             </div>
-            <div class="skill-wrap">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="skill-card wow fadeInUp" data-wow-duration="1000ms">
-                            <div class="skill-icon">
-                                <img src="{{ asset('images/image2.png')}}">
-                            </div>
-                            <div class="skill-text">
-                                <h3>Graph Data Science</h3>
-                                <p>Our powerful graph data science tool helps you make better predictions using your existing data.</p>
-                            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="skill-card wow fadeInUp" data-wow-duration="1000ms">
+                        <div class="skill-icon">
+                            <img src="{{ asset('images/image2.png')}}">
+                        </div>
+                        <div class="skill-text">
+                            <h3>Graph Data Science</h3>
+                            <p>Our powerful graph data science tool helps you make better predictions using your existing data.</p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="skill-card wow fadeInUp" data-wow-duration="1200ms">
-                            <div class="skill-icon">
-                                <img src="{{ asset('images/image3.png')}}">
-                            </div>
-                            <div class="skill-text">
-                                <h3>Easy Integration</h3>
-                                <p>Effortlessly integrate our product into your workflow and boost your productivity.</p>
-                            </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="skill-card wow fadeInUp" data-wow-duration="1200ms">
+                        <div class="skill-icon">
+                            <img src="{{ asset('images/image3.png')}}">
+                        </div>
+                        <div class="skill-text">
+                            <h3>Easy Integration</h3>
+                            <p>Effortlessly integrate our product into your workflow and boost your productivity.</p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="skill-card wow fadeInUp" data-wow-duration="1400ms">
-                            <div class="skill-icon">
-                                <img src="{{ asset('images/image4.png')}}">
-                            </div>
-                            <div class="skill-text">
-                                <h3>Graph Database & Analytics</h3>
-                                <p>Uncover hidden insights from your data with our innovative graph analysis tools.</p>
-                            </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="skill-card wow fadeInUp" data-wow-duration="1400ms">
+                        <div class="skill-icon">
+                            <img src="{{ asset('images/image4.png')}}">
+                        </div>
+                        <div class="skill-text">
+                            <h3>Graph Database & Analytics</h3>
+                            <p>Uncover hidden insights from your data with our innovative graph analysis tools.</p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="skill-card wow fadeInUp" data-wow-duration="1000ms">
-                            <div class="skill-icon">
-                                <img src="{{ asset('images/image5.png')}}">
-                            </div>
-                            <div class="skill-text">
-                                <h3>Interactive Data Visualization</h3>
-                                <p>Our intuitive data visualization tools bring your data to life, making it easy to understand and share.</p>
-                            </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="skill-card wow fadeInUp" data-wow-duration="1000ms">
+                        <div class="skill-icon">
+                            <img src="{{ asset('images/image5.png')}}">
+                        </div>
+                        <div class="skill-text">
+                            <h3>Interactive Data Visualization</h3>
+                            <p>Our intuitive data visualization tools bring your data to life, making it easy to understand and share.</p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="skill-card wow fadeInUp" data-wow-duration="1200ms">
-                            <div class="skill-icon">
-                                <img src="{{ asset('images/image6.png')}}">
-                            </div>
-                            <div class="skill-text">
-                                <h3>Eliminate Joins, Simplify Querying</h3>
-                                <p>Easily transform and analyze your data with our simple query language, requiring much less code than SQL.</p>
-                            </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="skill-card wow fadeInUp" data-wow-duration="1200ms">
+                        <div class="skill-icon">
+                            <img src="{{ asset('images/image6.png')}}">
+                        </div>
+                        <div class="skill-text">
+                            <h3>Eliminate Joins, Simplify Querying</h3>
+                            <p>Easily transform and analyze your data with our simple query language, requiring much less code than SQL.</p>
                         </div>
                     </div>
                 </div>
@@ -277,7 +264,7 @@
     <!-- end ch-blog-area -->
 
     <!-- start contact-pg-section -->
-    <section class="contact-pg-section section-padding" style="margin-top: -250px;">
+    <section class="contact-pg-section section-padding" >
         <div class="container">
             <div class="office-info ptb-120">
                 <div class="row">
