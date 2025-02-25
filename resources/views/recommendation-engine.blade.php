@@ -191,7 +191,7 @@
         margin-bottom: 10px;
         border-radius: 10px;
     }
-    
+
     /* List utama */
     .property-list {
         list-style-type: none;
@@ -361,13 +361,208 @@
     .code-content::-webkit-scrollbar-thumb:hover {
         background: #9ca3af;
     }
-    
+
     .content-video {
         width: 100%;   /* Membuat video responsif */
         max-width: 1000px; /* Menetapkan ukuran maksimum untuk video */
         height: auto;  /* Membuat tinggi otomatis berdasarkan lebar */
         border-radius: 10px; /* Sudut melengkung */
         box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5); /* Memberikan bayangan pada video */
+    }
+
+    /* ======== MEDIA QUERIES UNTUK RESPONSIVITAS ======== */
+
+    /* Tablet (768px - 1023px) */
+    @media screen and (max-width: 1023px) {
+        .section-title {
+            font-size: 24px;
+        }
+        
+        .card {
+            width: 220px;
+            height: 180px;
+        }
+        
+        .use-case-container {
+            padding: 0 0 0 15px;
+        }
+        
+        .use-case-container .content-wrapper .title {
+            font-size: 26px;
+        }
+        
+        .text-section {
+            max-width: 100%;
+        }
+        
+        .image-section {
+            max-width: 350px;
+            margin: 0 auto;
+        }
+        
+        .tab-button {
+            padding: 10px 15px;
+            font-size: 14px;
+        }
+        
+        .content-wrapper {
+            flex-direction: column;
+        }
+    }
+
+    /* Mobile Landscape (576px - 767px) */
+    @media screen and (max-width: 767px) {
+        .section-container {
+            padding: 30px 15px;
+        }
+        
+        .section-title {
+            font-size: 22px;
+        }
+        
+        .card {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            min-height: 160px;
+        }
+        
+        .use-case-container {
+            padding: 10px;
+        }
+        
+        .use-case-container .description {
+            font-size: 14px;
+            word-spacing: 3px;
+            line-height: 28px;
+        }
+        
+        .use-case-container .content-wrapper .title {
+            font-size: 22px;
+            text-align: center;
+        }
+        
+        .tab-menu {
+            flex-wrap: wrap;
+            padding: 10px;
+        }
+        
+        .tab-button {
+            padding: 8px 12px;
+            font-size: 12px;
+            margin: 2px;
+        }
+        
+        .property-list > li {
+            font-size: 18px;
+        }
+        
+        .code-container {
+            padding-right: 20px;
+        }
+        
+        .copy-button {
+            top: 0.25rem;
+            right: 0.25rem;
+            padding: 0.25rem;
+        }
+    }
+
+    /* Mobile Portrait (< 576px) */
+    @media screen and (max-width: 575px) {
+        .section-container {
+            padding: 20px 10px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+        }
+        
+        .underline {
+            width: 40px;
+            margin: 8px auto 20px auto;
+        }
+        
+        .card-container {
+            gap: 15px;
+        }
+        
+        .card {
+            padding: 15px;
+        }
+        
+        .card p {
+            font-size: 13px;
+        }
+        
+        .use-case-container .description {
+            font-size: 13px;
+            word-spacing: 2px;
+            line-height: 24px;
+        }
+        
+        .use-case-container .content-wrapper .title {
+            font-size: 20px;
+        }
+        
+        .description {
+            font-size: 13px;
+        }
+        
+        .tab-content {
+            padding: 15px 10px;
+        }
+        
+        .tab-content p {
+            font-size: 13px;
+        }
+        
+        .property-list > li {
+            font-size: 16px;
+        }
+        
+        .property-list p {
+            font-size: 13px;
+            margin-left: 15px;
+        }
+        
+        .nested-list {
+            padding-left: 20px;
+        }
+        
+        .nested-list li {
+            padding-left: 15px;
+            margin-bottom: 6px;
+        }
+        
+        .code-content {
+            font-size: 0.75rem;
+        }
+        
+        .content-image {
+            width: 100%;
+        }
+    }
+
+    /* Untuk layar kecil sekali */
+    @media screen and (max-width: 375px) {
+        .card {
+            width: 100%;
+        }
+        
+        .tab-button {
+            padding: 6px 8px;
+            font-size: 11px;
+        }
+        
+        .code-container {
+            padding: 0.5rem;
+        }
+        
+        .code-content {
+            padding-right: 0;
+            max-height: 150px;
+        }
     }
 </style>
 
