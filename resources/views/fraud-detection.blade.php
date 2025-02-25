@@ -5,7 +5,7 @@
 @section('content')
 
 <style>
-    /* Bagian utama */
+    /* Style asli Anda */
     .section-container {
         padding: 50px 20px;
     }
@@ -24,7 +24,6 @@
         margin: 10px auto 30px auto;
     }
 
-    /* Container kartu */
     .card-container {
         display: flex;
         justify-content: center;
@@ -32,7 +31,6 @@
         gap: 20px;
     }
 
-    /* Kartu */
     .card {
         background-color: #034ea1;
         color: white;
@@ -42,7 +40,7 @@
         padding: 20px;
         display: flex;
         flex-direction: column;
-        align-items: center; /* Memastikan gambar di tengah horizontal */
+        align-items: center;
         text-align: center;
         box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease-in-out;
@@ -54,20 +52,18 @@
     }
 
     .card p {
-        flex-grow: 1; /* Memungkinkan teks memenuhi ruang yang tersedia */
+        flex-grow: 1;
         display: flex;
-        align-items: center; /* Memusatkan teks secara vertikal */
-        justify-content: center; /* Memusatkan teks secara horizontal */
+        align-items: center;
+        justify-content: center;
         font-size: 14px;
         color: whitesmoke;
     }
 
-    /* Efek hover */
     .card:hover {
         transform: translateY(-5px);
     }
 
-    /* Container utama */
     .use-case-container {
         padding: 0 0px 0 20px;
         max-width: 1200px;
@@ -76,7 +72,7 @@
         border-radius: 20px;
     }
 
-    .use-case-container .description  {
+    .use-case-container .description {
         font-size: 16px;
         word-spacing: 5px;
         line-height: 33px;
@@ -88,7 +84,6 @@
         color: white;
     }
 
-    /* Wrapper untuk konten */
     .content-wrapper {
         display: flex;
         justify-content: space-between;
@@ -97,12 +92,10 @@
         flex-wrap: wrap;
     }
 
-    /* Bagian teks */
     .text-section {
         max-width: 50%;
     }
 
-    /* Deskripsi */
     .description {
         font-size: 15px;
         line-height: 1.5;
@@ -110,7 +103,6 @@
         text-align: justify;
     }
 
-    /* Bagian gambar */
     .image-section {
         max-width: 400px;
         display: flex;
@@ -124,7 +116,6 @@
         box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
     }
 
-    /* Card */
     .fraud-card {
         display: flex;
         align-items: center;
@@ -136,7 +127,6 @@
         box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
     }
 
-    /* Teks dalam Card */
     .fraud-text {
         width: 50%;
         text-align: justify;
@@ -156,7 +146,6 @@
         line-height: 30px;
     }
 
-    /* Gambar dalam Card */
     .fraud-image {
         width: 30%;
         display: flex;
@@ -169,148 +158,81 @@
         border-radius: 10px;
     }
 
-    /* ============================= */
-    /*         RESPONSIVE CSS        */
-    /* ============================= */
-
-    /* Tablet (Layar dengan lebar max 1024px) */
-    @media (max-width: 1024px) {
-        .content-wrapper {
-            flex-direction: column;
-            text-align: center;
+    /* Tambahan responsif */
+    @media (max-width: 1200px) {
+        .use-case-container {
+            padding: 20px;
         }
+    }
 
-        .text-section, .image-section {
+    @media (max-width: 992px) {
+        .text-section {
             max-width: 100%;
         }
 
-        .title {
-            font-size: 28px;
-        }
-
-        .description {
-            font-size: 14px;
-        }
-
-        .image {
-            width: 80%;
+        .image-section {
+            max-width: 100%;
         }
 
         .fraud-card {
             flex-direction: column;
-            text-align: center;
-            padding: 20px;
         }
 
-        .fraud-text, .fraud-image {
+        .fraud-text {
             width: 100%;
+            padding: 20px 0;
         }
 
-        .fraud-image img {
-            max-width: 80%;
+        .fraud-image {
+            width: 80%;
+            margin-top: 20px;
         }
     }
 
-    /* Handphone (Layar dengan lebar max 768px) */
     @media (max-width: 768px) {
         .section-title {
             font-size: 24px;
         }
 
-        .card-container {
-            flex-direction: column;
-            align-items: center;
+        .use-case-container .content-wrapper .fraud-title {
+            font-size: 28px;
         }
 
-        .card {
-            width: 90%;
-            height: auto;
-            padding: 15px;
-        }
-
-        .card img {
-            width: 40px;
-        }
-
-        .card p {
-            font-size: 12px;
-        }
-
-        .title {
-            font-size: 24px;
-        }
-
-        .description {
-            font-size: 13px;
-        }
-
-        .image {
-            width: 90%;
-        }
-
-        .fraud-card {
-            flex-direction: column;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .fraud-text, .fraud-image {
-            width: 100%;
-        }
-
-        .fraud-image img {
-            max-width: 85%;
-        }
-    }
-
-    /* Handphone Kecil (Layar dengan lebar max 480px) */
-    @media (max-width: 480px) {
-        .section-title {
-            font-size: 20px;
-        }
-
-        .card {
-            width: 100%;
-            height: auto;
-            padding: 10px;
-        }
-
-        .card img {
-            width: 30px;
-        }
-
-        .card p {
-            font-size: 12px;
-        }
-
-        .title {
-            font-size: 20px;
-        }
-
-        .description {
-            font-size: 12px;
-        }
-
-        .image {
-            width: 100%;
-        }
-
-        .fraud-card {
-            flex-direction: column;
-            text-align: center;
-            padding: 15px;
+        .use-case-container .description {
+            font-size: 14px;
+            line-height: 28px;
         }
 
         .fraud-text h3 {
-            font-size: 18px;
+            font-size: 24px;
+        }
+
+        .card {
+            width: calc(50% - 20px);
+            min-width: 200px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .card {
+            width: 100%;
+        }
+
+        .fraud-text h3 {
+            font-size: 20px;
         }
 
         .fraud-text p {
-            font-size: 12px;
+            font-size: 14px;
+            line-height: 24px;
         }
 
-        .fraud-image img {
-            max-width: 90%;
+        .fraud-image {
+            width: 100%;
+        }
+
+        .use-case-container {
+            padding: 15px;
         }
     }
 </style>
