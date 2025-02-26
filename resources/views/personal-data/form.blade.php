@@ -35,13 +35,13 @@
 <!-- end page-title -->
 
 <!-- start contact-pg-section -->
-<section class="contact-pg-section section-padding">
+<section class="contact-pg-section section-padding" style="margin-top: 0 ">
     <div class="container">
         <div class="row">
             <div class="col col-lg-5 col-12">
                 <div class="contact-title">
                     <div class="ch-top-title-s3">
-                        <h2 class="site-split-text ch-split-in-right">Let’s Get You Set Up</h2>
+                        <h2 class="site-split-text ch-split-in-right" style="text-align: left">Let’s Get You Set Up</h2>
                         <p class="blog-item wow fadeInUp">You'll be able to try the product in just a few minutes</p>
                     </div>
                 </div>
