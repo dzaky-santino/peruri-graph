@@ -1,22 +1,13 @@
 <footer class="footer">
     <div class="footer-container">
-        <img class="footer-logo" src="{{ asset('images/logo-peruri.png') }}" alt="Logo Peruri">
+        <img class="footer-logo" src="{{ asset('images/logo-peruri-white.webp') }}" alt="Logo Peruri">
         <p class="footer-text">Copyright © <a href="https://www.peruri.co.id/business-pillar/digital-security/graph-analytics" target="_blank">Perum Peruri</a>. All rights reserved | <a href="#">Privacy Policy</a></p>
     </div>
 </footer>
 
 <style>
-    /* Root colors */
-    :root {
-        --blue-primary: #88c1fd; /* Background color for footer */
-        --gray-5: #e0e0e0; /* Text color */
-        --dark-blue: #1e3d73; /* Text color for the footer */
-    }
-
-    /* Footer Styles */
     footer {
-        background-color: var(--blue-primary);
-        /* padding: 10px 0 0 0; */
+        background-color: #3639DF;
         width: 100%;
         text-align: center;
     }
@@ -38,13 +29,13 @@
     }
 
     .footer-text {
-        color: var(--dark-blue);
+        color: white;
         font-size: 14px;
         font-weight: 500;
     }
 
     .footer-text a {
-        color: var(--dark-blue);
+        color: white;
         text-decoration: none;
     }
 
