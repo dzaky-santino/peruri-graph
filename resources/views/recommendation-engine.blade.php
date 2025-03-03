@@ -13,14 +13,14 @@
     .section-title {
         font-size: 28px;
         font-weight: bold;
-        color: #034ea1;
+        color: #101444;
         text-align: center;
     }
 
     .underline {
         width: 50px;
         height: 3px;
-        background-color: #034ea1;
+        background-color: #3639DF;
         margin: 10px auto 30px auto;
     }
 
@@ -34,7 +34,7 @@
 
     /* Kartu */
     .card {
-        background-color: #034ea1;
+        background-color: #3639DF;
         color: white;
         width: 250px;
         height: 200px;
@@ -72,7 +72,7 @@
         padding: 0 0 0 20px;
         max-width: 1200px;
         margin: 0 auto;
-        background-color: #034ea1;
+        background-color: #3639DF;
         border-radius: 20px;
     }
 
@@ -130,7 +130,7 @@
         top: 0;  /* Posisi tetap di atas saat di-scroll */
         display: flex;
         justify-content: center;
-        background-color: #88c1fd;
+        background-color: #3639DF;
         padding: 15px;
         border-radius: 10px 10px 0 0;
         z-index: 100; /* Menjaga tab-menu tetap di atas */
@@ -147,7 +147,7 @@
     }
 
     .tab-button.active {
-        background: #034ea1;
+        background: #B1B1EF;
         border-radius: 5px;
     }
 
@@ -174,8 +174,17 @@
     }
 
     .tab-content span {
-        color: #034ea1;
+        color: #3639DF;
         font-weight: bold;
+    }
+
+    .tab-content h2 {
+        color: #101444;
+        font-weight: bold;
+    }
+
+    .tab-content h4 {
+        color: #101444;
     }
 
     /* Aktifkan hanya tab yang dipilih */
@@ -202,7 +211,7 @@
     .property-list > li {
         font-size: 20px;
         font-weight: bold;
-        color: #034ea1;
+        color: #1E2892;
     }
 
     /* Paragraf di dalam list utama */
@@ -231,7 +240,7 @@
         content: "•";
         position: absolute;
         left: 0;
-        color: #034ea1;
+        color: #1E2892;
         font-size: 16px;
         font-weight: bold;
     }
@@ -239,19 +248,19 @@
     /* Nama properti dengan warna biru */
     .property-name {
         font-weight: bold;
-        color: #88c1fd;
+        color: #1E2892;
     }
 
     /* Mengubah warna teks "Customer" dalam list utama */
     .property-list > li > .property-name {
-        color: #88c1fd;
+        color: #1E2892;
     }
 
     /* Judul utama */
     .query-title {
         font-size: 20px;
         font-weight: bold;
-        color: #034ea1;
+        color: #1E2892;
     }
 
     .code-box {
@@ -330,7 +339,7 @@
 
     .copy-success {
         display: none;
-        color: #2563eb;
+        color: #3639DF;
     }
 
     .copy-button.copied .copy-default {
@@ -733,7 +742,7 @@
                                 In the context of the Northwind dataset, there are three types of relations: <span>PURCHASED, ORDERS, and PART_OF.</span>
                             </p>
                             <div class="query-container">
-                                <h3 class="query-title">• <span>PURCHASED</span></h3>
+                                <h3 class="query-title">• PURCHASED</h3>
 
                                 <div class="code-box">
                                     <div class="code-header">
@@ -770,7 +779,7 @@
                             </div>
 
                             <div class="query-container">
-                                <h3 class="query-title">• <span>ORDERS</span></h3>
+                                <h3 class="query-title">• ORDERS</h3>
                             
                                 <div class="code-box">
                                     <div class="code-header">
@@ -806,7 +815,7 @@
                             </div>
 
                             <div class="query-container">
-                                <h3 class="query-title">• <span>PART_OF</span></h3>
+                                <h3 class="query-title">• PART_OF</h3>
                                 
                                 <div class="code-box">
                                     <div class="code-header">
@@ -1033,7 +1042,7 @@
 
                             <p>The given Cypher query aims to create a <span>[:PURCHASED]</span> relationship between the <span>Customer</span> node and the <span>Order</span> node.</p>
 
-                            <h2 style="color:#034ea1; font-size:20px;" >1. Matching the Existing Customer Nodes</h2>
+                            <h2 style="color:#3639DF; font-size:20px;" >1. Matching the Existing Customer Nodes</h2>
 
                             <div class="code-box">
                                 <div class="code-header">
@@ -1061,7 +1070,7 @@
 
                             <p>Using <span>MATCH</span> to search for the customer node with <span>customerID</span> 'ALFKI'. The <span>customer</span> variable is used to reference this Customer node.</p>                   
 
-                            <h2 style="color:#034ea1; font-size:20px;" >2. Matching the Existing Order Nodes</h2>
+                            <h2 style="color:#3639DF; font-size:20px;" >2. Matching the Existing Order Nodes</h2>
 
                             <div class="code-box">
                                 <div class="code-header">
@@ -1089,7 +1098,7 @@
 
                             <p>Using <span>MATCH</span> to search for the customer node with <span>orderID</span> '11011'. The order variable is used to reference this <span>Order</span> node.</p>
                         
-                            <h2 style="color:#034ea1; font-size:20px;" >3. Connects the Customer Node and Order Node</h2>
+                            <h2 style="color:#3639DF; font-size:20px;" >3. Connects the Customer Node and Order Node</h2>
 
                             <div class="code-box">
                                 <div class="code-header">
@@ -1126,13 +1135,13 @@
                                 ability to traverse and query relationships efficiently. The following is how we can approach building using Northwind:
                             </p>
                             <ul class="property-list">
-                                <li style="font-size: 16px; color:#034ea1;"><span>• Identify Customer Purchase History</span>
+                                <li style="font-size: 16px; color:#3639DF;"><span>• Identify Customer Purchase History</span>
                                     <p class="description">Start by tracing the graph from a specific customer node to the orders they have placed and the products in those orders.</p>
                                 </li>
-                                <li style="font-size: 16px; color:#034ea1;"><span>• Explore Similar Customers</span>
+                                <li style="font-size: 16px; color:#3639DF;"><span>• Explore Similar Customers</span>
                                     <p class="description">Identify other customers who have purchased similar products or products from the same category.</p>
                                 </li>
-                                <li style="font-size: 16px; color:#034ea1;"><span>• Recommend Products Purchased by Similar Customers</span>
+                                <li style="font-size: 16px; color:#3639DF;"><span>• Recommend Products Purchased by Similar Customers</span>
                                     <p class="description">Recommend products purchased by similar customers but not yet purchased by the target customer.</p>
                                 </li>
                             </ul>
@@ -1186,7 +1195,7 @@
                             <p>This query involves searching for patterns of product purchases by customers and generating summary statistics, such as product category, products purchased, and total number of purchases.</p>
                             
                             <ul class="property-list">
-                                <li style="font-size: 18px; color:#034ea1;"><span>1. Matching Graph Patterns</span>
+                                <li style="font-size: 18px; color:#3639DF;"><span>1. Matching Graph Patterns</span>
                                     <p class="description" style="margin-top: 5px;">Using <span>MATCH</span> to match graph patterns. The <span>cust</span> node represents a customer, the <span>[:PURCHASED]</span> relation relates customers to orders, the <span>[o:ORDERS]</span> relation relates orders to products by storing the <span>quantity</span>, and the <span>[:PART_OF]</span> relation relates products to categories.</p>
                                 </li>
 
@@ -1214,7 +1223,7 @@
                                     </div>
                                 </div>
 
-                                <li style="font-size: 18px; color:#034ea1;"><span>2. Return the Expected Data</span></li>
+                                <li style="font-size: 18px; color:#3639DF;"><span>2. Return the Expected Data</span></li>
                                 
                                 <div class="code-box">
                                     <div class="code-header">
@@ -1249,11 +1258,11 @@
                                     <li style="font-size: 15px;"><span class="property-name">SUM(o.quantity) :</span> The total number of products purchased, calculated using the SUM aggregation function from the quantity in the [o:ORDERS] relation.</li>
                                 </ul>
                                 
-                                <li style="font-size: 18px; color:#034ea1;"><span>3. Using DISTINCT</span>
+                                <li style="font-size: 18px; color:#3639DF;"><span>3. Using DISTINCT</span>
                                     <p class="description" style="margin-top: 5px;">Using <span>DISTINCT</span> to ensure that each row of the returned result is unique.</p>
                                 </li>
                                 
-                                <li style="font-size: 18px; color:#034ea1;"><span>4. Sorting the Results</span></li>
+                                <li style="font-size: 18px; color:#3639DF;"><span>4. Sorting the Results</span></li>
                                 
                                 <div class="code-box">
                                     <div class="code-header">
@@ -1319,7 +1328,7 @@
                             </div>
                             
                             <ul class="property-list">
-                                <li style="font-size: 18px; color:#034ea1;"><span>1. Matching Graph Patterns</span></li>
+                                <li style="font-size: 18px; color:#3639DF;"><span>1. Matching Graph Patterns</span></li>
                                 <div class="code-box">
                                     <div class="code-header">
                                         <span class="code-title">Cypher</span>
@@ -1357,7 +1366,7 @@
                             </ul>
                             
                             <ul class="property-list">
-                                <li style="font-size: 18px; color:#034ea1;"><span>2. Filter Customers and Products Purchased</span></li>
+                                <li style="font-size: 18px; color:#3639DF;"><span>2. Filter Customers and Products Purchased</span></li>
                                 <div class="code-box">
                                     <div class="code-header">
                                         <span class="code-title">Cypher</span>
@@ -1386,7 +1395,7 @@
                             <p>Using <span>WHERE</span> to apply a filter for customers with ID 'QUICK' who have not purchased the same product (<span>Camembert Pierrot</span>) and retrieve the product with that name.</p> 
                             
                             <ul class="property-list">
-                                <li style="font-size: 18px; color:#034ea1;"><span>3. Return the Expected Data</span></li>
+                                <li style="font-size: 18px; color:#3639DF;"><span>3. Return the Expected Data</span></li>
                                 <div class="code-box">
                                     <div class="code-header">
                                         <span class="code-title">Cypher</span>
@@ -1422,7 +1431,7 @@
                             </ul>
                             
                             <ul class="property-list">
-                                <li style="font-size: 18px; color:#034ea1;"><span>4. Sorting the Results</span></li>
+                                <li style="font-size: 18px; color:#3639DF;"><span>4. Sorting the Results</span></li>
                                 <div class="code-box">
                                     <div class="code-header">
                                         <span class="code-title">Cypher</span>
@@ -1508,7 +1517,7 @@
                             
                             <p>Collaborative filtering is a technique in recommender systems where recommendations are provided based on behavioral patterns and preferences of users similar to the target user. The principle is that recommending products based on similarities in purchases by other customers, without a specific focus on a particular category. Below is an example of applying collaborative filtering recommendations using the Northwind dataset.</p>
                             
-                            <h2 style="color:#034ea1; font-size:20px;" >Find Behavioral Patterns</h2>
+                            <h2 style="color:#3639DF; font-size:20px;" >Find Behavioral Patterns</h2>
                             <div class="code-box">
                                 <div class="code-header">
                                     <span class="code-title">Cypher</span>
@@ -1541,7 +1550,7 @@
                             <p>The purpose of this query is to provide product recommendations to customers with ID 'CONSH' based on product purchasing patterns by other customers who have similar purchasing preferences.</p>
                             
                             <ul class="property-list">
-                                <li style="font-size: 18px; color:#034ea1;"><span>1. Search for Target Customer Purchases</span></li>
+                                <li style="font-size: 18px; color:#3639DF;"><span>1. Search for Target Customer Purchases</span></li>
                                 <div class="code-box">
                                     <div class="code-header">
                                         <span class="code-title">Cypher</span>
@@ -1577,7 +1586,7 @@
                             </ul>
                             
                             <ul class="property-list">
-                                <li style="font-size: 18px; color:#034ea1;"><span>2. Calculating the Frequency of Purchases by Other Customers</span></li>
+                                <li style="font-size: 18px; color:#3639DF;"><span>2. Calculating the Frequency of Purchases by Other Customers</span></li>
                             </ul>
                             
                             <div class="code-box">
@@ -1621,7 +1630,7 @@
                             </ul>
                             
                             <ul class="property-list">
-                                <li style="font-size: 18px; color:#034ea1;"><span>3. Return Product Recommendations</span></li>
+                                <li style="font-size: 18px; color:#3639DF;"><span>3. Return Product Recommendations</span></li>
                             </ul>
                             <div class="code-box">
                                 <div class="code-header">
@@ -1666,27 +1675,27 @@
                             <p>From the query results, we can infer some insights related to product recommendations to 'CONSH' customers based on other customers' purchasing patterns:</p>
                             
                             <ul class="property-list">
-                                <li style="font-size: 18px; color:#034ea1;"><span>• Most Recommended Product</span></li>
+                                <li style="font-size: 18px; color:#3639DF;"><span>• Most Recommended Product</span></li>
                                 <p>"Raclette Courdavault" is the most recommended product with a purchase frequency of 378. This shows that this product is highly demanded by other customers who share similar preferences with 'CONSH' customers.</p>
                             </ul>
                             
                             <ul class="property-list">
-                                <li style="font-size: 18px; color:#034ea1;"><span>• Most Recommended Product</span></li>
+                                <li style="font-size: 18px; color:#3639DF;"><span>• Most Recommended Product</span></li>
                                 <p>"Guaraná Fantástica", "Camembert Pierrot", and "Gorgonzola Telino" have a high frequency of purchase with a score of 357 each. These products are also top recommendations with high popularity.</p>
                             </ul>
                             
                             <ul class="property-list">
-                                <li style="font-size: 18px; color:#034ea1;"><span>• Diversification of Recommended Products</span></li>
+                                <li style="font-size: 18px; color:#3639DF;"><span>• Diversification of Recommended Products</span></li>
                                 <p>Product recommendations include various types, such as beverages ("Guaraná Fantástica"), cheeses ("Raclette Courdavault", "Camembert Pierrot", "Gorgonzola Telino"), pasta ("Gnocchi di nonna Alice"), and cakes ("Tarte au sucre"). This shows the variety of products recommended to 'CONSH' customers.</p>
                             </ul>
                             
                             <ul class="property-list">
-                                <li style="font-size: 18px; color:#034ea1;"><span>• Potential 'CONSH' Customer Favorites</span></li>
+                                <li style="font-size: 18px; color:#3639DF;"><span>• Potential 'CONSH' Customer Favorites</span></li>
                                 <p>Based on the recommendations, we can assume that customer 'CONSH' is likely to have a preference for food products such as cheese, drinks, pasta, and cake based on the purchasing patterns of other customers.</p>
                             </ul>
                             
                             <ul class="property-list">
-                                <li style="font-size: 18px; color:#034ea1;"><span>• Potential Marketing Strategy</span></li>
+                                <li style="font-size: 18px; color:#3639DF;"><span>• Potential Marketing Strategy</span></li>
                                 <p>This information can be used to develop more targeted marketing strategies, such as special promotions, bundle packages, or discount campaigns for the most recommended products.</p>
                             </ul>
                             
