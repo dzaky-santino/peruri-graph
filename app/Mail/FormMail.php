@@ -19,7 +19,7 @@ class FormMail extends Mailable
 
     public function build()
     {
-        return $this->from('peruri@gmail.com', 'Peruri')
+        return $this->from('dzakysan2002@gmail.com', 'Peruri')
                     ->subject('Data User')
                     ->view('emails.form_submission'); // Sesuai dengan nama file
     }    
