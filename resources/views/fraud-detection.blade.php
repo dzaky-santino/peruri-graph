@@ -13,14 +13,14 @@
     .section-title {
         font-size: 28px;
         font-weight: bold;
-        color: #034ea1;
+        color: #101444;
         text-align: center;
     }
 
     .underline {
         width: 50px;
         height: 3px;
-        background-color: #034ea1;
+        background-color: #3639DF;
         margin: 10px auto 30px auto;
     }
 
@@ -32,7 +32,7 @@
     }
 
     .card {
-        background-color: #034ea1;
+        background-color: #3639DF;
         color: white;
         width: 250px;
         height: 200px;
@@ -68,7 +68,7 @@
         padding: 0 0px 0 20px;
         max-width: 1200px;
         margin: 0 auto;
-        background-color: #034ea1;
+        background-color: #3639DF;
         border-radius: 20px;
     }
 
@@ -136,7 +136,7 @@
     .fraud-text h3 {
         font-size: 30px;
         font-weight: 900;
-        color: #373738;
+        color: #101444;
         margin-bottom: 10px;
     }
 
