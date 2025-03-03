@@ -360,7 +360,7 @@
                         <h2 class="section-title" style="text-transform:none;">Graph Database vs RDBMS</h2>
                         <div class="underline"></div>
                
-                        <p>Graph Databases and RDBMS (Relational Database Management System) have different approaches to data storage and manipulation. 
+                        <p style="text-align:center;">Graph Databases and RDBMS (Relational Database Management System) have different approaches to data storage and manipulation. 
                             Graph Database, with its graphical representation, provides advantages in more natural data modeling, schema flexibility, 
                             efficient queries, and graph search analysis.
                         </p>
